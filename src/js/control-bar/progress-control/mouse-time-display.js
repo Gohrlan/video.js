@@ -1,6 +1,7 @@
 /**
  * @file mouse-time-display.js
  */
+import * as Dom from '../../utils/dom.js';
 import Component from '../../component.js';
 import * as Fn from '../../utils/fn.js';
 import formatTime from '../../utils/format-time.js';
@@ -64,8 +65,9 @@ class MouseTimeDisplay extends Component {
     this.rafId_ = this.requestAnimationFrame(() => {
       const duration = this.player_.duration();
       const content = formatTime(seekBarPoint * duration, duration);
+      const scale = Dom.getTransformScale(this.el_);
 
-      this.el_.style.left = `${seekBarRect.width * seekBarPoint}px`;
+      this.el_.style.left = `${seekBarRect.width / scale * seekBarPoint}px`;
       this.getChild('timeTooltip').update(seekBarRect, seekBarPoint, content);
     });
   }

@@ -582,6 +582,40 @@ export function findPosition(el) {
 }
 
 /**
+ * The css transform scale factor affecting a DOM element
+ *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from
+ *
+ * @return {number}
+ *         The scale factor of the element and it's parents
+ */
+export function getTransformScale(el) {
+  let scale = 1;
+
+  while (el && el.nodeName !== 'html') {
+    const st = window.getComputedStyle(el, null);
+    const tr = st.getPropertyValue('-webkit-transform') ||
+      st.getPropertyValue('-moz-transform') ||
+      st.getPropertyValue('-ms-transform') ||
+      st.getPropertyValue('-o-transform') ||
+      st.getPropertyValue('transform') ||
+      '';
+
+    if (tr && tr !== 'none' && tr !== '') {
+      const pattern = /[-+]?[0-9]*\.?[0-9]+/g;
+      const trArr = tr.match(pattern).map(Number);
+
+      if (trArr.length > 0 && (!isNaN(trArr[0]) && trArr[0] !== 0)) {
+        scale = scale * trArr[0];
+      }
+    }
+    el = el.parentElement;
+  }
+  return scale;
+}
+
+/**
  * x and y coordinates for a dom element or mouse pointer
  *
  * @typedef {Object} Dom~Coordinates
@@ -619,13 +653,15 @@ export function getPointerPosition(el, event) {
   let pageY = event.pageY;
   let pageX = event.pageX;
 
+  const scale = getTransformScale(el);
+
   if (event.changedTouches) {
     pageX = event.changedTouches[0].pageX;
     pageY = event.changedTouches[0].pageY;
   }
 
-  position.y = Math.max(0, Math.min(1, ((boxY - pageY) + boxH) / boxH));
-  position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW));
+  position.y = Math.max(0, Math.min(1, ((boxY - pageY) + boxH) / boxH)) / scale;
+  position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW)) / scale;
 
   return position;
 }

@@ -1,6 +1,4 @@
 .DS_Store
-build/files/*
-build/temp/*
 docs/api/*
 dev.html
 projects
@@ -27,7 +25,6 @@ test/coverage/*
 .coveralls.yml
 .sass-cache
 
-dist/*
 es5/*
 
 .idea/

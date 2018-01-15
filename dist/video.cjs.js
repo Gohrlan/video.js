@@ -1221,6 +1221,35 @@ function findPosition(el) {
 }
 
 /**
+ * The css transform scale factor affecting a DOM element
+ *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from
+ *
+ * @return {number}
+ *         The scale factor of the element and it's parents
+ */
+function getTransformScale(el) {
+  var scale = 1;
+
+  while (el && el.nodeName !== 'html') {
+    var st = window.getComputedStyle(el, null);
+    var tr = st.getPropertyValue('-webkit-transform') || st.getPropertyValue('-moz-transform') || st.getPropertyValue('-ms-transform') || st.getPropertyValue('-o-transform') || st.getPropertyValue('transform') || '';
+
+    if (tr && tr !== 'none' && tr !== '') {
+      var pattern = /[-+]?[0-9]*\.?[0-9]+/g;
+      var trArr = tr.match(pattern).map(Number);
+
+      if (trArr.length > 0 && !isNaN(trArr[0]) && trArr[0] !== 0) {
+        scale = scale * trArr[0];
+      }
+    }
+    el = el.parentElement;
+  }
+  return scale;
+}
+
+/**
  * x and y coordinates for a dom element or mouse pointer
  *
  * @typedef {Object} Dom~Coordinates
@@ -1258,13 +1287,15 @@ function getPointerPosition(el, event) {
   var pageY = event.pageY;
   var pageX = event.pageX;
 
+  var scale = getTransformScale(el);
+
   if (event.changedTouches) {
     pageX = event.changedTouches[0].pageX;
     pageY = event.changedTouches[0].pageY;
   }
 
-  position.y = Math.max(0, Math.min(1, (boxY - pageY + boxH) / boxH));
-  position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW));
+  position.y = Math.max(0, Math.min(1, (boxY - pageY + boxH) / boxH)) / scale;
+  position.x = Math.max(0, Math.min(1, (pageX - boxX) / boxW)) / scale;
 
   return position;
 }
@@ -1503,6 +1534,7 @@ var Dom = (Object.freeze || Object)({
 	unblockTextSelection: unblockTextSelection,
 	getBoundingClientRect: getBoundingClientRect,
 	findPosition: findPosition,
+	getTransformScale: getTransformScale,
 	getPointerPosition: getPointerPosition,
 	isTextNode: isTextNode,
 	emptyEl: emptyEl,
@@ -11893,7 +11925,7 @@ var MouseTimeDisplay = function (_Component) {
    */
 
 
-  MouseTimeDisplay.prototype.createEl = function createEl() {
+  MouseTimeDisplay.prototype.createEl = function createEl$$1() {
     return _Component.prototype.createEl.call(this, 'div', {
       className: 'vjs-mouse-display'
     });
@@ -11923,8 +11955,9 @@ var MouseTimeDisplay = function (_Component) {
     this.rafId_ = this.requestAnimationFrame(function () {
       var duration = _this2.player_.duration();
       var content = formatTime(seekBarPoint * duration, duration);
+      var scale = getTransformScale(_this2.el_);
 
-      _this2.el_.style.left = seekBarRect.width * seekBarPoint + 'px';
+      _this2.el_.style.left = seekBarRect.width / scale * seekBarPoint + 'px';
       _this2.getChild('timeTooltip').update(seekBarRect, seekBarPoint, content);
     });
   };

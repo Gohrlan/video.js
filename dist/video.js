@@ -670,6 +670,24 @@ var tsml = function tsml (sa) {
  * @file computed-style.js
  * @module computed-style
  */
+/**
+ * A safe getComputedStyle with an IE8 fallback.
+ *
+ * This is needed because in Firefox, if the player is loaded in an iframe with
+ * `display:none`, then `getComputedStyle` returns `null`, so, we do a null-check to
+ * make sure  that the player doesn't break in these cases.
+ *
+ * @param {Element} el
+ *        The element you want the computed style of
+ *
+ * @param {string} prop
+ *        The property name you want
+ *
+ * @see https://bugzilla.mozilla.org/show_bug.cgi?id=548397
+ *
+ * @static
+ * @const
+ */
 function computedStyle(el, prop) {
   if (!el || !prop) {
     return '';
@@ -690,6 +708,8 @@ var _templateObject = taggedTemplateLiteralLoose(['Setting attributes in the sec
  * @file dom.js
  * @module dom
  */
+var _cssTransformScale = void 0;
+
 /**
  * Detect if a value is a string with any non-whitespace characters.
  *
@@ -1268,13 +1288,14 @@ function findPosition(el) {
 /**
  * Calculates the css transform scale factor affecting video player
  *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from
+ *
  * @return {number}
  *         The scale factor of the element and it's parents
  */
-function calculateTransformScale() {
-  console.log("calculateTransformScale");
+function calculateTransformScale(el) {
   var scale = 1;
-  var el = this.player.el_;
 
   while (el && el.nodeName !== 'html') {
     var st = window_1.getComputedStyle(el, null);
@@ -1291,23 +1312,26 @@ function calculateTransformScale() {
     el = el.parentElement;
   }
 
-  this._cssTransformScale = scale;
+  _cssTransformScale = scale;
   return scale;
 }
 
 /**
  * Returns the css transform scale factor affecting video player
  *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from, if needed
+ *
  * @return {number}
- *         The scale factor of the element and it's parents
+ *        The scale factor of the element and it's parents
  */
-function getTransformScale() {
-  console.log("getTransformScale");
-  var scale = this._cssTransformScale;
+function getTransformScale(el) {
+  var scale = _cssTransformScale;
 
-  if (this._cssTransformScale === undefined) {
-    scale = calculateTransformScale();
-    window_1.addEventListener("resize", function () {
+  if (_cssTransformScale === undefined) {
+    scale = calculateTransformScale(el);
+    window_1.addEventListener('resize', function () {
+      // Set a timeout to wait the css scale to be set
       setTimeout(calculateTransformScale, 100);
     });
   }
@@ -1636,6 +1660,16 @@ function newGUID() {
  * @file dom-data.js
  * @module dom-data
  */
+/**
+ * Element Data Store.
+ *
+ * Allows for binding data to an element without putting it directly on the
+ * element. Ex. Event listeners are stored here.
+ * (also from jsninja.com, slightly modified and updated for closure compiler)
+ *
+ * @type {Object}
+ * @private
+ */
 var elData = {};
 
 /*
@@ -1728,6 +1762,15 @@ function removeData(el) {
  * @module events
  */
 
+/**
+ * Clean up the listener cache and dispatchers
+ *
+ * @param {Element|Object} elem
+ *        Element to clean up
+ *
+ * @param {string} type
+ *        Type of event to clean up
+ */
 function _cleanUpEvents(elem, type) {
   var data = getData(elem);
 
@@ -2292,12 +2335,17 @@ if (isReal() && document_1.readyState === 'complete') {
 }
 
 /**
- * check if the document has been loaded
- */
-
-/**
  * @file stylesheet.js
  * @module stylesheet
+ */
+/**
+ * Create a DOM syle element given a className for it.
+ *
+ * @param {string} className
+ *        The className to add to the created style element.
+ *
+ * @return {Element}
+ *         The element that was created.
  */
 var createStyleElement = function createStyleElement(className) {
   var style = document_1.createElement('style');
@@ -2327,6 +2375,22 @@ var setTextContent = function setTextContent(el, content) {
 /**
  * @file fn.js
  * @module fn
+ */
+/**
+ * Bind (a.k.a proxy or Context). A simple method for changing the context of a function
+ * It also stores a unique id on the function so it can be easily removed from events.
+ *
+ * @param {Mixed} context
+ *        The object to bind as scope.
+ *
+ * @param {Function} fn
+ *        The function to be bound to a scope.
+ *
+ * @param {number} [uid]
+ *        An optional unique ID for the function to be set
+ *
+ * @return {Function}
+ *         The new function that will be bound into the context given
  */
 var bind = function bind(context, fn, uid) {
   // Make sure the function has a unique ID
@@ -2379,6 +2443,14 @@ var throttle = function throttle(fn, wait) {
 
 /**
  * @file src/js/event-target.js
+ */
+/**
+ * `EventTarget` is a class that can have the same API as the DOM `EventTarget`. It
+ * adds shorthand functions that wrap around lengthy functions. For example:
+ * the `on` function is a wrapper around `addEventListener`.
+ *
+ * @see [EventTarget Spec]{@link https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-EventTarget}
+ * @class EventTarget
  */
 var EventTarget = function EventTarget() {};
 
@@ -2530,6 +2602,15 @@ EventTarget.prototype.dispatchEvent = EventTarget.prototype.trigger;
 /**
  * @file mixins/evented.js
  * @module evented
+ */
+/**
+ * Returns whether or not an object has had the evented mixin applied.
+ *
+ * @param  {Object} object
+ *         An object to test.
+ *
+ * @return {boolean}
+ *         Whether or not the object appears to be evented.
  */
 var isEvented = function isEvented(object) {
   return object instanceof EventTarget || !!object.eventBusEl_ && ['on', 'one', 'off', 'trigger'].every(function (k) {
@@ -2935,6 +3016,12 @@ function evented(target) {
  * @file mixins/stateful.js
  * @module stateful
  */
+/**
+ * Contains methods that provide statefulness to an object which is passed
+ * to {@link module:stateful}.
+ *
+ * @mixin StatefulMixin
+ */
 var StatefulMixin = {
 
   /**
@@ -3064,6 +3151,18 @@ function toTitleCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Compares the TitleCase versions of the two strings for equality.
+ *
+ * @param {string} str1
+ *        The first string to compare
+ *
+ * @param {string} str2
+ *        The second string to compare
+ *
+ * @return {boolean}
+ *         Whether the TitleCase versions of the strings are equal
+ */
 function titleCaseEquals(str1, str2) {
   return toTitleCase(str1) === toTitleCase(str2);
 }
@@ -3071,6 +3170,16 @@ function titleCaseEquals(str1, str2) {
 /**
  * @file merge-options.js
  * @module merge-options
+ */
+/**
+ * Deep-merge one or more options objects, recursively merging **only** plain
+ * object properties.
+ *
+ * @param   {Object[]} sources
+ *          One or more objects to merge into a new object.
+ *
+ * @returns {Object}
+ *          A new object that is the merged result of all sources.
  */
 function mergeOptions() {
   var result = {};
@@ -3106,6 +3215,15 @@ function mergeOptions() {
  *
  * @file component.js
  */
+/**
+ * Base class for all UI Components.
+ * Components are UI objects which represent both a javascript object and an element
+ * in the DOM. They can be children of other components, and can have
+ * children themselves.
+ *
+ * Components can also use methods from {@link EventTarget}
+ */
+
 var Component = function () {
 
   /**
@@ -4869,6 +4987,18 @@ function createTimeRanges(start, end) {
  * @file buffer.js
  * @module buffer
  */
+/**
+ * Compute the percentage of the media that has been buffered.
+ *
+ * @param {TimeRange} buffered
+ *        The current `TimeRange` object representing buffered time ranges
+ *
+ * @param {number} duration
+ *        Total duration of the media
+ *
+ * @return {number}
+ *         Percent buffered of the total duration in decimal form.
+ */
 function bufferedPercent(buffered, duration) {
   var bufferedDuration = 0;
   var start = void 0;
@@ -4901,6 +5031,13 @@ function bufferedPercent(buffered, duration) {
  * @file fullscreen-api.js
  * @module fullscreen-api
  * @private
+ */
+/**
+ * Store the browser-specific methods for the fullscreen API.
+ *
+ * @type {Object}
+ * @see [Specification]{@link https://fullscreen.spec.whatwg.org}
+ * @see [Map Approach From Screenfull.js]{@link https://github.com/sindresorhus/screenfull.js}
  */
 var FullscreenApi = {};
 
@@ -4936,6 +5073,23 @@ if (browserApi) {
 
 /**
  * @file media-error.js
+ */
+/**
+ * A Custom `MediaError` class which mimics the standard HTML5 `MediaError` class.
+ *
+ * @param {number|string|Object|MediaError} value
+ *        This can be of multiple types:
+ *        - number: should be a standard error code
+ *        - string: an error message (the code will be 0)
+ *        - Object: arbitrary properties
+ *        - `MediaError` (native): used to populate a video.js `MediaError` object
+ *        - `MediaError` (video.js): will return itself if it's already a
+ *          video.js `MediaError` object.
+ *
+ * @see [MediaError Spec]{@link https://dev.w3.org/html5/spec-author-view/video.html#mediaerror}
+ * @see [Encrypted MediaError Spec]{@link https://www.w3.org/TR/2013/WD-encrypted-media-20130510/#error-codes}
+ *
+ * @class MediaError
  */
 function MediaError(value) {
 
@@ -5028,98 +5182,6 @@ for (var errNum = 0; errNum < MediaError.errorTypes.length; errNum++) {
   // values should be accessible on both the class and instance
   MediaError.prototype[MediaError.errorTypes[errNum]] = errNum;
 }
-
-// jsdocs for instance/static members added above
-// instance methods use `#` and static methods use `.`
-/**
- * W3C error code for any custom error.
- *
- * @member MediaError#MEDIA_ERR_CUSTOM
- * @constant {number}
- * @default 0
- */
-/**
- * W3C error code for any custom error.
- *
- * @member MediaError.MEDIA_ERR_CUSTOM
- * @constant {number}
- * @default 0
- */
-
-/**
- * W3C error code for media error aborted.
- *
- * @member MediaError#MEDIA_ERR_ABORTED
- * @constant {number}
- * @default 1
- */
-/**
- * W3C error code for media error aborted.
- *
- * @member MediaError.MEDIA_ERR_ABORTED
- * @constant {number}
- * @default 1
- */
-
-/**
- * W3C error code for any network error.
- *
- * @member MediaError#MEDIA_ERR_NETWORK
- * @constant {number}
- * @default 2
- */
-/**
- * W3C error code for any network error.
- *
- * @member MediaError.MEDIA_ERR_NETWORK
- * @constant {number}
- * @default 2
- */
-
-/**
- * W3C error code for any decoding error.
- *
- * @member MediaError#MEDIA_ERR_DECODE
- * @constant {number}
- * @default 3
- */
-/**
- * W3C error code for any decoding error.
- *
- * @member MediaError.MEDIA_ERR_DECODE
- * @constant {number}
- * @default 3
- */
-
-/**
- * W3C error code for any time that a source is not supported.
- *
- * @member MediaError#MEDIA_ERR_SRC_NOT_SUPPORTED
- * @constant {number}
- * @default 4
- */
-/**
- * W3C error code for any time that a source is not supported.
- *
- * @member MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED
- * @constant {number}
- * @default 4
- */
-
-/**
- * W3C error code for any time that a source is encrypted.
- *
- * @member MediaError#MEDIA_ERR_ENCRYPTED
- * @constant {number}
- * @default 5
- */
-/**
- * W3C error code for any time that a source is encrypted.
- *
- * @member MediaError.MEDIA_ERR_ENCRYPTED
- * @constant {number}
- * @default 5
- */
 
 var tuple = SafeParseTuple;
 
@@ -5828,6 +5890,13 @@ Component.registerComponent('ModalDialog', ModalDialog);
 /**
  * @file track-list.js
  */
+/**
+ * Common functionaliy between {@link TextTrackList}, {@link AudioTrackList}, and
+ * {@link VideoTrackList}
+ *
+ * @extends EventTarget
+ */
+
 var TrackList = function (_EventTarget) {
   inherits(TrackList, _EventTarget);
 
@@ -6027,6 +6096,18 @@ for (var event in TrackList.prototype.allowedEvents_) {
 /**
  * @file audio-track-list.js
  */
+/**
+ * Anywhere we call this function we diverge from the spec
+ * as we only support one enabled audiotrack at a time
+ *
+ * @param {AudioTrackList} list
+ *        list to work on
+ *
+ * @param {AudioTrack} track
+ *        The track to skip
+ *
+ * @private
+ */
 var disableOthers = function disableOthers(list, track) {
   for (var i = 0; i < list.length; i++) {
     if (!Object.keys(list[i]).length || track.id === list[i].id) {
@@ -6138,6 +6219,17 @@ var AudioTrackList = function (_TrackList) {
 
 /**
  * @file video-track-list.js
+ */
+/**
+ * Un-select all other {@link VideoTrack}s that are selected.
+ *
+ * @param {VideoTrackList} list
+ *        list to work on
+ *
+ * @param {VideoTrack} track
+ *        The track to skip
+ *
+ * @private
  */
 var disableOthers$1 = function disableOthers(list, track) {
   for (var i = 0; i < list.length; i++) {
@@ -6264,6 +6356,13 @@ var VideoTrackList = function (_TrackList) {
 /**
  * @file text-track-list.js
  */
+/**
+ * The current list of {@link TextTrack} for a media file.
+ *
+ * @see [Spec]{@link https://html.spec.whatwg.org/multipage/embedded-content.html#texttracklist}
+ * @extends TrackList
+ */
+
 var TextTrackList = function (_TrackList) {
   inherits(TextTrackList, _TrackList);
 
@@ -6336,6 +6435,10 @@ var TextTrackList = function (_TrackList) {
 
 /**
  * @file html-track-element-list.js
+ */
+
+/**
+ * The current list of {@link HtmlTrackElement}s.
  */
 
 var HtmlTrackElementList = function () {
@@ -6466,6 +6569,30 @@ var HtmlTrackElementList = function () {
 /**
  * @file text-track-cue-list.js
  */
+/**
+ * @typedef {Object} TextTrackCueList~TextTrackCue
+ *
+ * @property {string} id
+ *           The unique id for this text track cue
+ *
+ * @property {number} startTime
+ *           The start time for this text track cue
+ *
+ * @property {number} endTime
+ *           The end time for this text track cue
+ *
+ * @property {boolean} pauseOnExit
+ *           Pause when the end time is reached if true.
+ *
+ * @see [Spec]{@link https://html.spec.whatwg.org/multipage/embedded-content.html#texttrackcue}
+ */
+
+/**
+ * A List of TextTrackCues.
+ *
+ * @see [Spec]{@link https://html.spec.whatwg.org/multipage/embedded-content.html#texttrackcuelist}
+ */
+
 var TextTrackCueList = function () {
 
   /**
@@ -6642,6 +6769,17 @@ var TextTrackMode = {
 /**
  * @file track.js
  */
+/**
+ * A Track class that contains all of the common functionality for {@link AudioTrack},
+ * {@link VideoTrack}, and {@link TextTrack}.
+ *
+ * > Note: This class should not be used directly
+ *
+ * @see {@link https://html.spec.whatwg.org/multipage/embedded-content.html}
+ * @extends EventTarget
+ * @abstract
+ */
+
 var Track = function (_EventTarget) {
   inherits(Track, _EventTarget);
 
@@ -6750,6 +6888,40 @@ var Track = function (_EventTarget) {
 /**
  * @file url.js
  * @module url
+ */
+/**
+ * @typedef {Object} url:URLObject
+ *
+ * @property {string} protocol
+ *           The protocol of the url that was parsed.
+ *
+ * @property {string} hostname
+ *           The hostname of the url that was parsed.
+ *
+ * @property {string} port
+ *           The port of the url that was parsed.
+ *
+ * @property {string} pathname
+ *           The pathname of the url that was parsed.
+ *
+ * @property {string} search
+ *           The search query of the url that was parsed.
+ *
+ * @property {string} hash
+ *           The hash of the url that was parsed.
+ *
+ * @property {string} host
+ *           The host of the url that was parsed.
+ */
+
+/**
+ * Resolve and parse the elements of a URL.
+ *
+ * @param  {String} url
+ *         The url to parse
+ *
+ * @return {url:URLObject}
+ *         An object of url details
  */
 var parseUrl = function parseUrl(url) {
   var props = ['protocol', 'hostname', 'port', 'pathname', 'search', 'hash', 'host'];
@@ -7249,6 +7421,17 @@ function noop() {}
 /**
  * @file text-track.js
  */
+/**
+ * Takes a webvtt file contents and parses it into cues
+ *
+ * @param {string} srcContent
+ *        webVTT file contents
+ *
+ * @param {TextTrack} track
+ *        TextTrack to add cues to. Cues come from the srcContent.
+ *
+ * @private
+ */
 var parseCues = function parseCues(srcContent, track) {
   var parser = new window_1.WebVTT.Parser(window_1, window_1.vttjs, window_1.WebVTT.StringDecoder());
   var errors = [];
@@ -7639,6 +7822,14 @@ TextTrack.prototype.allowedEvents_ = {
   cuechange: 'cuechange'
 };
 
+/**
+ * A representation of a single `AudioTrack`. If it is part of an {@link AudioTrackList}
+ * only one `AudioTrack` in the list will be enabled at a time.
+ *
+ * @see [Spec]{@link https://html.spec.whatwg.org/multipage/embedded-content.html#audiotrack}
+ * @extends Track
+ */
+
 var AudioTrack = function (_Track) {
   inherits(AudioTrack, _Track);
 
@@ -7732,6 +7923,13 @@ var AudioTrack = function (_Track) {
 
   return AudioTrack;
 }(Track);
+
+/**
+ * A representation of a single `VideoTrack`.
+ *
+ * @see [Spec]{@link https://html.spec.whatwg.org/multipage/embedded-content.html#videotrack}
+ * @extends Track
+ */
 
 var VideoTrack = function (_Track) {
   inherits(VideoTrack, _Track);
@@ -7831,6 +8029,11 @@ var VideoTrack = function (_Track) {
  * @file html-track-element.js
  */
 
+/**
+ * @memberof HTMLTrackElement
+ * @typedef {HTMLTrackElement~ReadyState}
+ * @enum {number}
+ */
 var NONE = 0;
 var LOADING = 1;
 var LOADED = 2;
@@ -7966,6 +8169,11 @@ HTMLTrackElement.NONE = NONE;
 HTMLTrackElement.LOADING = LOADING;
 HTMLTrackElement.LOADED = LOADED;
 HTMLTrackElement.ERROR = ERROR;
+
+/*
+ * This file contains all track properties that are used in
+ * player.js, tech.js, html5.js and possibly other techs in the future.
+ */
 
 var NORMAL = {
   audio: {
@@ -9841,6 +10049,44 @@ if (!window_1.VTTCue) {
  * @file tech.js
  */
 
+/**
+ * An Object containing a structure like: `{src: 'url', type: 'mimetype'}` or string
+ * that just contains the src url alone.
+ * * `var SourceObject = {src: 'http://ex.com/video.mp4', type: 'video/mp4'};`
+   * `var SourceString = 'http://example.com/some-video.mp4';`
+ *
+ * @typedef {Object|string} Tech~SourceObject
+ *
+ * @property {string} src
+ *           The url to the source
+ *
+ * @property {string} type
+ *           The mime type of the source
+ */
+
+/**
+ * A function used by {@link Tech} to create a new {@link TextTrack}.
+ *
+ * @private
+ *
+ * @param {Tech} self
+ *        An instance of the Tech class.
+ *
+ * @param {string} kind
+ *        `TextTrack` kind (subtitles, captions, descriptions, chapters, or metadata)
+ *
+ * @param {string} [label]
+ *        Label to identify the text track
+ *
+ * @param {string} [language]
+ *        Two letter language abbreviation
+ *
+ * @param {Object} [options={}]
+ *        An object with additional text track options
+ *
+ * @return {TextTrack}
+ *          The text track that was created.
+ */
 function createTrackHelper(self, kind, label, language) {
   var options = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
 
@@ -11216,6 +11462,19 @@ function setSourceHelper() {
 /**
  * @module filter-source
  */
+/**
+ * Filter out single bad source objects or multiple source objects in an
+ * array. Also flattens nested source object arrays into a 1 dimensional
+ * array of source objects.
+ *
+ * @param {Tech~SourceObject|Tech~SourceObject[]} src
+ *        The src object to filter
+ *
+ * @return {Tech~SourceObject[]}
+ *         An array of sourceobjects containing only valid sources
+ *
+ * @private
+ */
 var filterSource = function filterSource(src) {
   // traverse array
   if (Array.isArray(src)) {
@@ -11249,6 +11508,13 @@ var filterSource = function filterSource(src) {
 /**
  * @file loader.js
  */
+/**
+ * The `MediaLoader` is the `Component` that decides which playback technology to load
+ * when a player is initialized.
+ *
+ * @extends Component
+ */
+
 var MediaLoader = function (_Component) {
   inherits(MediaLoader, _Component);
 
@@ -11310,6 +11576,13 @@ Component.registerComponent('MediaLoader', MediaLoader);
 /**
  * @file button.js
  */
+/**
+ * Clickable Component which is clickable or keyboard actionable,
+ * but is not a native HTML button.
+ *
+ * @extends Component
+ */
+
 var ClickableComponent = function (_Component) {
   inherits(ClickableComponent, _Component);
 
@@ -11582,6 +11855,12 @@ Component.registerComponent('ClickableComponent', ClickableComponent);
 /**
  * @file poster-image.js
  */
+/**
+ * A `ClickableComponent` that handles showing the poster image for the player.
+ *
+ * @extends ClickableComponent
+ */
+
 var PosterImage = function (_ClickableComponent) {
   inherits(PosterImage, _ClickableComponent);
 
@@ -12077,6 +12356,12 @@ Component.registerComponent('TextTrackDisplay', TextTrackDisplay);
 /**
  * @file loading-spinner.js
  */
+/**
+ * A loading spinner for use during waiting/loading events.
+ *
+ * @extends Component
+ */
+
 var LoadingSpinner = function (_Component) {
   inherits(LoadingSpinner, _Component);
 
@@ -12106,6 +12391,12 @@ Component.registerComponent('LoadingSpinner', LoadingSpinner);
 /**
  * @file button.js
  */
+/**
+ * Base class for all buttons.
+ *
+ * @extends ClickableComponent
+ */
+
 var Button = function (_ClickableComponent) {
   inherits(Button, _ClickableComponent);
 
@@ -12239,6 +12530,13 @@ Component.registerComponent('Button', Button);
 /**
  * @file big-play-button.js
  */
+/**
+ * The initial play button that shows before the video has played. The hiding of the
+ * `BigPlayButton` get done via CSS and `Player` states.
+ *
+ * @extends Button
+ */
+
 var BigPlayButton = function (_Button) {
   inherits(BigPlayButton, _Button);
 
@@ -12333,6 +12631,13 @@ Component.registerComponent('BigPlayButton', BigPlayButton);
 /**
  * @file close-button.js
  */
+/**
+ * The `CloseButton` is a `{@link Button}` that fires a `close` event when
+ * it gets clicked.
+ *
+ * @extends Button
+ */
+
 var CloseButton = function (_Button) {
   inherits(CloseButton, _Button);
 
@@ -12404,6 +12709,12 @@ Component.registerComponent('CloseButton', CloseButton);
 /**
  * @file play-toggle.js
  */
+/**
+ * Button to toggle between play and pause.
+ *
+ * @extends Button
+ */
+
 var PlayToggle = function (_Button) {
   inherits(PlayToggle, _Button);
 
@@ -12602,6 +12913,12 @@ function formatTime(seconds) {
 /**
  * @file time-display.js
  */
+/**
+ * Displays the time left in the video
+ *
+ * @extends Component
+ */
+
 var TimeDisplay = function (_Component) {
   inherits(TimeDisplay, _Component);
 
@@ -12751,6 +13068,12 @@ Component.registerComponent('TimeDisplay', TimeDisplay);
 /**
  * @file current-time-display.js
  */
+/**
+ * Displays the current time
+ *
+ * @extends Component
+ */
+
 var CurrentTimeDisplay = function (_TimeDisplay) {
   inherits(CurrentTimeDisplay, _TimeDisplay);
 
@@ -12838,6 +13161,12 @@ Component.registerComponent('CurrentTimeDisplay', CurrentTimeDisplay);
 /**
  * @file duration-display.js
  */
+/**
+ * Displays the duration
+ *
+ * @extends Component
+ */
+
 var DurationDisplay = function (_TimeDisplay) {
   inherits(DurationDisplay, _TimeDisplay);
 
@@ -12919,6 +13248,13 @@ Component.registerComponent('DurationDisplay', DurationDisplay);
 /**
  * @file time-divider.js
  */
+/**
+ * The separator between the current time and duration.
+ * Can be hidden if it's not needed in the design.
+ *
+ * @extends Component
+ */
+
 var TimeDivider = function (_Component) {
   inherits(TimeDivider, _Component);
 
@@ -12948,6 +13284,12 @@ Component.registerComponent('TimeDivider', TimeDivider);
 /**
  * @file remaining-time-display.js
  */
+/**
+ * Displays the time left in the video
+ *
+ * @extends Component
+ */
+
 var RemainingTimeDisplay = function (_TimeDisplay) {
   inherits(RemainingTimeDisplay, _TimeDisplay);
 
@@ -13061,6 +13403,14 @@ Component.registerComponent('RemainingTimeDisplay', RemainingTimeDisplay);
 /**
  * @file live-display.js
  */
+// TODO - Future make it click to snap to live
+
+/**
+ * Displays the live indicator when duration is Infinity.
+ *
+ * @extends Component
+ */
+
 var LiveDisplay = function (_Component) {
   inherits(LiveDisplay, _Component);
 
@@ -13140,6 +13490,13 @@ Component.registerComponent('LiveDisplay', LiveDisplay);
 /**
  * @file slider.js
  */
+/**
+ * The base functionality for a slider. Can be vertical or horizontal.
+ * For instance the volume bar or the seek bar on a video is a slider.
+ *
+ * @extends Component
+ */
+
 var Slider = function (_Component) {
   inherits(Slider, _Component);
 
@@ -13534,6 +13891,12 @@ Component.registerComponent('Slider', Slider);
 /**
  * @file load-progress-bar.js
  */
+/**
+ * Shows loading progress
+ *
+ * @extends Component
+ */
+
 var LoadProgressBar = function (_Component) {
   inherits(LoadProgressBar, _Component);
 
@@ -13635,6 +13998,12 @@ Component.registerComponent('LoadProgressBar', LoadProgressBar);
 /**
  * @file time-tooltip.js
  */
+/**
+ * Time tooltips display a time above the progress bar.
+ *
+ * @extends Component
+ */
+
 var TimeTooltip = function (_Component) {
   inherits(TimeTooltip, _Component);
 
@@ -13723,6 +14092,13 @@ Component.registerComponent('TimeTooltip', TimeTooltip);
 /**
  * @file play-progress-bar.js
  */
+/**
+ * Used by {@link SeekBar} to display media playback progress as part of the
+ * {@link ProgressControl}.
+ *
+ * @extends Component
+ */
+
 var PlayProgressBar = function (_Component) {
   inherits(PlayProgressBar, _Component);
 
@@ -13802,6 +14178,15 @@ Component.registerComponent('PlayProgressBar', PlayProgressBar);
 /**
  * @file mouse-time-display.js
  */
+/**
+ * The {@link MouseTimeDisplay} component tracks mouse movement over the
+ * {@link ProgressControl}. It displays an indicator and a {@link TimeTooltip}
+ * indicating the time which is represented by a given point in the
+ * {@link ProgressControl}.
+ *
+ * @extends Component
+ */
+
 var MouseTimeDisplay = function (_Component) {
   inherits(MouseTimeDisplay, _Component);
 
@@ -13861,7 +14246,7 @@ var MouseTimeDisplay = function (_Component) {
     this.rafId_ = this.requestAnimationFrame(function () {
       var duration = _this2.player_.duration();
       var content = formatTime(seekBarPoint * duration, duration);
-      var scale = getTransformScale();
+      var scale = getTransformScale(_this2.el_);
 
       _this2.el_.style.left = seekBarRect.width / scale * seekBarPoint + 'px';
       _this2.getChild('timeTooltip').update(seekBarRect, seekBarPoint, content);
@@ -13888,6 +14273,7 @@ Component.registerComponent('MouseTimeDisplay', MouseTimeDisplay);
 /**
  * @file seek-bar.js
  */
+// The number of seconds the `step*` functions move the timeline.
 var STEP_SECONDS = 5;
 
 // The interval at which the bar should update as it progresses.
@@ -14243,6 +14629,13 @@ Component.registerComponent('SeekBar', SeekBar);
 /**
  * @file progress-control.js
  */
+/**
+ * The Progress Control component contains the seek bar, load progress,
+ * and play progress.
+ *
+ * @extends Component
+ */
+
 var ProgressControl = function (_Component) {
   inherits(ProgressControl, _Component);
 
@@ -14457,6 +14850,12 @@ Component.registerComponent('ProgressControl', ProgressControl);
 /**
  * @file fullscreen-toggle.js
  */
+/**
+ * Toggle fullscreen video
+ *
+ * @extends Button
+ */
+
 var FullscreenToggle = function (_Button) {
   inherits(FullscreenToggle, _Button);
 
@@ -14575,6 +14974,12 @@ var checkVolumeSupport = function checkVolumeSupport(self, player) {
 /**
  * @file volume-level.js
  */
+/**
+ * Shows volume level
+ *
+ * @extends Component
+ */
+
 var VolumeLevel = function (_Component) {
   inherits(VolumeLevel, _Component);
 
@@ -14604,6 +15009,13 @@ Component.registerComponent('VolumeLevel', VolumeLevel);
 /**
  * @file volume-bar.js
  */
+// Required children
+/**
+ * The bar that contains the volume level and can be clicked on to adjust the level
+ *
+ * @extends Slider
+ */
+
 var VolumeBar = function (_Slider) {
   inherits(VolumeBar, _Slider);
 
@@ -14807,6 +15219,13 @@ Component.registerComponent('VolumeBar', VolumeBar);
 /**
  * @file volume-control.js
  */
+// Required children
+/**
+ * The component for controlling the volume level
+ *
+ * @extends Component
+ */
+
 var VolumeControl = function (_Component) {
   inherits(VolumeControl, _Component);
 
@@ -14953,6 +15372,12 @@ Component.registerComponent('VolumeControl', VolumeControl);
 /**
  * @file mute-toggle.js
  */
+/**
+ * A button component for muting the audio.
+ *
+ * @extends Button
+ */
+
 var MuteToggle = function (_Button) {
   inherits(MuteToggle, _Button);
 
@@ -15102,6 +15527,14 @@ Component.registerComponent('MuteToggle', MuteToggle);
 /**
  * @file volume-control.js
  */
+// Required children
+/**
+ * A Component to contain the MuteToggle and VolumeControl so that
+ * they can work together.
+ *
+ * @extends Component
+ */
+
 var VolumePanel = function (_Component) {
   inherits(VolumePanel, _Component);
 
@@ -15210,6 +15643,13 @@ Component.registerComponent('VolumePanel', VolumePanel);
 /**
  * @file menu.js
  */
+/**
+ * The Menu component is used to build popup menus, including subtitle and
+ * captions selection menus.
+ *
+ * @extends Component
+ */
+
 var Menu = function (_Component) {
   inherits(Menu, _Component);
 
@@ -15393,6 +15833,12 @@ Component.registerComponent('Menu', Menu);
 /**
  * @file menu-button.js
  */
+/**
+ * A `MenuButton` class for any popup {@link Menu}.
+ *
+ * @extends Component
+ */
+
 var MenuButton = function (_Component) {
   inherits(MenuButton, _Component);
 
@@ -15813,6 +16259,12 @@ Component.registerComponent('MenuButton', MenuButton);
 /**
  * @file track-button.js
  */
+/**
+ * The base class for buttons that toggle specific  track types (e.g. subtitles).
+ *
+ * @extends MenuButton
+ */
+
 var TrackButton = function (_MenuButton) {
     inherits(TrackButton, _MenuButton);
 
@@ -15861,6 +16313,12 @@ Component.registerComponent('TrackButton', TrackButton);
 /**
  * @file menu-item.js
  */
+/**
+ * The component for a menu item. `<li>`
+ *
+ * @extends ClickableComponent
+ */
+
 var MenuItem = function (_ClickableComponent) {
   inherits(MenuItem, _ClickableComponent);
 
@@ -15971,6 +16429,12 @@ Component.registerComponent('MenuItem', MenuItem);
 /**
  * @file text-track-menu-item.js
  */
+/**
+ * The specific menu item type for selecting a language within a text track kind
+ *
+ * @extends MenuItem
+ */
+
 var TextTrackMenuItem = function (_MenuItem) {
   inherits(TextTrackMenuItem, _MenuItem);
 
@@ -16140,6 +16604,12 @@ Component.registerComponent('TextTrackMenuItem', TextTrackMenuItem);
 /**
  * @file off-text-track-menu-item.js
  */
+/**
+ * A special menu item for turning of a specific type of text track
+ *
+ * @extends TextTrackMenuItem
+ */
+
 var OffTextTrackMenuItem = function (_TextTrackMenuItem) {
   inherits(OffTextTrackMenuItem, _TextTrackMenuItem);
 
@@ -16233,6 +16703,12 @@ Component.registerComponent('OffTextTrackMenuItem', OffTextTrackMenuItem);
 /**
  * @file text-track-button.js
  */
+/**
+ * The base class for buttons that toggle specific text track types (e.g. subtitles)
+ *
+ * @extends MenuButton
+ */
+
 var TextTrackButton = function (_TrackButton) {
   inherits(TextTrackButton, _TrackButton);
 
@@ -16320,6 +16796,12 @@ Component.registerComponent('TextTrackButton', TextTrackButton);
 /**
  * @file chapters-track-menu-item.js
  */
+/**
+ * The chapter track menu item
+ *
+ * @extends MenuItem
+ */
+
 var ChaptersTrackMenuItem = function (_MenuItem) {
   inherits(ChaptersTrackMenuItem, _MenuItem);
 
@@ -16397,6 +16879,14 @@ Component.registerComponent('ChaptersTrackMenuItem', ChaptersTrackMenuItem);
 /**
  * @file chapters-button.js
  */
+/**
+ * The button component for toggling and selecting chapters
+ * Chapters act much differently than other text tracks
+ * Cues are navigation vs. other tracks of alternative languages
+ *
+ * @extends TextTrackButton
+ */
+
 var ChaptersButton = function (_TextTrackButton) {
   inherits(ChaptersButton, _TextTrackButton);
 
@@ -16602,6 +17092,12 @@ Component.registerComponent('ChaptersButton', ChaptersButton);
 /**
  * @file descriptions-button.js
  */
+/**
+ * The button component for toggling and selecting descriptions
+ *
+ * @extends TextTrackButton
+ */
+
 var DescriptionsButton = function (_TextTrackButton) {
   inherits(DescriptionsButton, _TextTrackButton);
 
@@ -16706,6 +17202,12 @@ Component.registerComponent('DescriptionsButton', DescriptionsButton);
 /**
  * @file subtitles-button.js
  */
+/**
+ * The button component for toggling and selecting subtitles
+ *
+ * @extends TextTrackButton
+ */
+
 var SubtitlesButton = function (_TextTrackButton) {
   inherits(SubtitlesButton, _TextTrackButton);
 
@@ -16768,6 +17270,12 @@ Component.registerComponent('SubtitlesButton', SubtitlesButton);
 /**
  * @file caption-settings-menu-item.js
  */
+/**
+ * The menu item for caption track settings menu
+ *
+ * @extends TextTrackMenuItem
+ */
+
 var CaptionSettingsMenuItem = function (_TextTrackMenuItem) {
   inherits(CaptionSettingsMenuItem, _TextTrackMenuItem);
 
@@ -16829,6 +17337,12 @@ Component.registerComponent('CaptionSettingsMenuItem', CaptionSettingsMenuItem);
 /**
  * @file captions-button.js
  */
+/**
+ * The button component for toggling and selecting captions
+ *
+ * @extends TextTrackButton
+ */
+
 var CaptionsButton = function (_TextTrackButton) {
   inherits(CaptionsButton, _TextTrackButton);
 
@@ -16911,6 +17425,13 @@ Component.registerComponent('CaptionsButton', CaptionsButton);
 /**
  * @file subs-caps-menu-item.js
  */
+/**
+ * SubsCapsMenuItem has an [cc] icon to distinguish captions from subtitles
+ * in the SubsCapsMenu.
+ *
+ * @extends TextTrackMenuItem
+ */
+
 var SubsCapsMenuItem = function (_TextTrackMenuItem) {
   inherits(SubsCapsMenuItem, _TextTrackMenuItem);
 
@@ -16943,6 +17464,12 @@ Component.registerComponent('SubsCapsMenuItem', SubsCapsMenuItem);
 /**
  * @file sub-caps-button.js
  */
+/**
+ * The button component for toggling and selecting captions and/or subtitles
+ *
+ * @extends TextTrackButton
+ */
+
 var SubsCapsButton = function (_TextTrackButton) {
   inherits(SubsCapsButton, _TextTrackButton);
 
@@ -17026,6 +17553,12 @@ Component.registerComponent('SubsCapsButton', SubsCapsButton);
 /**
  * @file audio-track-menu-item.js
  */
+/**
+ * An {@link AudioTrack} {@link MenuItem}
+ *
+ * @extends MenuItem
+ */
+
 var AudioTrackMenuItem = function (_MenuItem) {
   inherits(AudioTrackMenuItem, _MenuItem);
 
@@ -17114,6 +17647,12 @@ Component.registerComponent('AudioTrackMenuItem', AudioTrackMenuItem);
 /**
  * @file audio-track-button.js
  */
+/**
+ * The base class for buttons that toggle specific {@link AudioTrack} types.
+ *
+ * @extends TrackButton
+ */
+
 var AudioTrackButton = function (_TrackButton) {
   inherits(AudioTrackButton, _TrackButton);
 
@@ -17200,6 +17739,12 @@ Component.registerComponent('AudioTrackButton', AudioTrackButton);
 /**
  * @file playback-rate-menu-item.js
  */
+/**
+ * The specific menu item type for selecting a playback rate.
+ *
+ * @extends MenuItem
+ */
+
 var PlaybackRateMenuItem = function (_MenuItem) {
   inherits(PlaybackRateMenuItem, _MenuItem);
 
@@ -17282,6 +17827,12 @@ Component.registerComponent('PlaybackRateMenuItem', PlaybackRateMenuItem);
 /**
  * @file playback-rate-menu-button.js
  */
+/**
+ * The component for controlling the playback rate.
+ *
+ * @extends MenuButton
+ */
+
 var PlaybackRateMenuButton = function (_MenuButton) {
   inherits(PlaybackRateMenuButton, _MenuButton);
 
@@ -17488,6 +18039,13 @@ Component.registerComponent('PlaybackRateMenuButton', PlaybackRateMenuButton);
 /**
  * @file spacer.js
  */
+/**
+ * Just an empty spacer element that can be used as an append point for plugins, etc.
+ * Also can be used to create space between elements when necessary.
+ *
+ * @extends Component
+ */
+
 var Spacer = function (_Component) {
   inherits(Spacer, _Component);
 
@@ -17528,6 +18086,12 @@ Component.registerComponent('Spacer', Spacer);
 /**
  * @file custom-control-spacer.js
  */
+/**
+ * Spacer specifically meant to be used as an insertion point for new plugins, etc.
+ *
+ * @extends Spacer
+ */
+
 var CustomControlSpacer = function (_Spacer) {
   inherits(CustomControlSpacer, _Spacer);
 
@@ -17573,6 +18137,13 @@ Component.registerComponent('CustomControlSpacer', CustomControlSpacer);
 /**
  * @file control-bar.js
  */
+// Required children
+/**
+ * Container of main controls.
+ *
+ * @extends Component
+ */
+
 var ControlBar = function (_Component) {
   inherits(ControlBar, _Component);
 
@@ -17618,6 +18189,13 @@ Component.registerComponent('ControlBar', ControlBar);
 /**
  * @file error-display.js
  */
+/**
+ * A display that indicates an error has occurred. This means that the video
+ * is unplayable.
+ *
+ * @extends ModalDialog
+ */
+
 var ErrorDisplay = function (_ModalDialog) {
   inherits(ErrorDisplay, _ModalDialog);
 
@@ -18219,6 +18797,13 @@ var _templateObject$2 = taggedTemplateLiteralLoose(['Text Tracks are being loade
 /**
  * @file html5.js
  */
+/**
+ * HTML5 Media Controller - Wrapper for HTML5 Media API
+ *
+ * @mixes Tech~SouceHandlerAdditions
+ * @extends Tech
+ */
+
 var Html5 = function (_Tech) {
   inherits(Html5, _Tech);
 
@@ -20019,6 +20604,12 @@ var _templateObject$1 = taggedTemplateLiteralLoose(['\n        Using the tech di
  * @file player.js
  */
 // Subclasses Component
+// The following imports are used only to ensure that the corresponding modules
+// are always included in the video.js package. Importing the modules will
+// execute them and they will register themselves with video.js.
+// Import Html5 tech, at least for disposing the original video tag.
+// The following tech events are simply re-triggered
+// on the player when they happen
 var TECH_EVENTS_RETRIGGER = [
 /**
  * Fired while the user agent is downloading media data.
@@ -23800,6 +24391,13 @@ Component.registerComponent('Player', Player);
 /**
  * @file plugin.js
  */
+/**
+ * The base plugin name.
+ *
+ * @private
+ * @constant
+ * @type {string}
+ */
 var BASE_PLUGIN_NAME = 'plugin';
 
 /**
@@ -24300,6 +24898,51 @@ Player.prototype.hasPlugin = function (name) {
 };
 
 /**
+ * Signals that a plugin is about to be set up on a player.
+ *
+ * @event    Player#beforepluginsetup
+ * @type     {Plugin~PluginEventHash}
+ */
+
+/**
+ * Signals that a plugin is about to be set up on a player - by name. The name
+ * is the name of the plugin.
+ *
+ * @event    Player#beforepluginsetup:$name
+ * @type     {Plugin~PluginEventHash}
+ */
+
+/**
+ * Signals that a plugin has just been set up on a player.
+ *
+ * @event    Player#pluginsetup
+ * @type     {Plugin~PluginEventHash}
+ */
+
+/**
+ * Signals that a plugin has just been set up on a player - by name. The name
+ * is the name of the plugin.
+ *
+ * @event    Player#pluginsetup:$name
+ * @type     {Plugin~PluginEventHash}
+ */
+
+/**
+ * @typedef  {Object} Plugin~PluginEventHash
+ *
+ * @property {string} instance
+ *           For basic plugins, the return value of the plugin function. For
+ *           advanced plugins, the plugin instance on which the event is fired.
+ *
+ * @property {string} name
+ *           The name of the plugin.
+ *
+ * @property {string} plugin
+ *           For basic plugins, the plugin function. For advanced plugins, the
+ *           plugin class/constructor.
+ */
+
+/**
  * @file extend.js
  * @module extend
  */
@@ -24387,6 +25030,8 @@ var extendFn = function extendFn(superClass) {
  * @file video.js
  * @module videojs
  */
+// Include the built-in techs
+// HTML5 Element Shim for IE8
 if (typeof HTMLVideoElement === 'undefined' && isReal()) {
   document_1.createElement('video');
   document_1.createElement('audio');

@@ -10,7 +10,6 @@ import {isObject} from './obj';
 import computedStyle from './computed-style';
 import * as browser from './browser';
 
-
 let _cssTransformScale;
 
 /**
@@ -587,13 +586,14 @@ export function findPosition(el) {
 /**
  * Calculates the css transform scale factor affecting video player
  *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from
+ *
  * @return {number}
  *         The scale factor of the element and it's parents
  */
-function calculateTransformScale() {
-  console.log("calculateTransformScale");
+function calculateTransformScale(el) {
   let scale = 1;
-  let el = this.player.el_;
 
   while (el && el.nodeName !== 'html') {
     const st = window.getComputedStyle(el, null);
@@ -615,23 +615,28 @@ function calculateTransformScale() {
     el = el.parentElement;
   }
 
-  this._cssTransformScale = scale;
+  _cssTransformScale = scale;
   return scale;
 }
 
 /**
  * Returns the css transform scale factor affecting video player
  *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from, if needed
+ *
  * @return {number}
- *         The scale factor of the element and it's parents
+ *        The scale factor of the element and it's parents
  */
-export function getTransformScale() {
-  console.log("getTransformScale");
-  let scale = this._cssTransformScale;
+export function getTransformScale(el) {
+  let scale = _cssTransformScale;
 
-  if (this._cssTransformScale === undefined) {
-    scale = calculateTransformScale();
-    window.addEventListener("resize", () => { setTimeout(calculateTransformScale, 100) });
+  if (_cssTransformScale === undefined) {
+    scale = calculateTransformScale(el);
+    window.addEventListener('resize', () => {
+      // Set a timeout to wait the css scale to be set
+      setTimeout(calculateTransformScale, 100);
+    });
   }
   return scale;
 }

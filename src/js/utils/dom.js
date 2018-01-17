@@ -634,8 +634,12 @@ export function getTransformScale(el) {
   if (_cssTransformScale === undefined) {
     scale = calculateTransformScale(el);
     window.addEventListener('resize', () => {
+      if (!isNaN(this.timeout)) {
+        clearTimeout(this.timeout);
+      }
+
       // Set a timeout to wait the css scale to be set
-      setTimeout(calculateTransformScale, 100);
+      this.timeout = setTimeout(calculateTransformScale, 100, el);
     });
   }
   return scale;

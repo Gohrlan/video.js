@@ -1263,13 +1263,19 @@ function calculateTransformScale(el) {
  *        The scale factor of the element and it's parents
  */
 function getTransformScale(el) {
+  var _this = this;
+
   var scale = _cssTransformScale;
 
   if (_cssTransformScale === undefined) {
     scale = calculateTransformScale(el);
     window.addEventListener('resize', function () {
+      if (!isNaN(_this.timeout)) {
+        clearTimeout(_this.timeout);
+      }
+
       // Set a timeout to wait the css scale to be set
-      setTimeout(calculateTransformScale, 100);
+      _this.timeout = setTimeout(calculateTransformScale, 100, el);
     });
   }
   return scale;

@@ -10,6 +10,8 @@ import {isObject} from './obj';
 import computedStyle from './computed-style';
 import * as browser from './browser';
 
+let _cssTransformScale;
+
 /**
  * Detect if a value is a string with any non-whitespace characters.
  *
@@ -582,7 +584,7 @@ export function findPosition(el) {
 }
 
 /**
- * The css transform scale factor affecting a DOM element
+ * Calculates the css transform scale factor affecting video player
  *
  * @param {Element} el
  *        Element of which (and the parents) to get the css transform scale from
@@ -590,7 +592,7 @@ export function findPosition(el) {
  * @return {number}
  *         The scale factor of the element and it's parents
  */
-export function getTransformScale(el) {
+function calculateTransformScale(el) {
   let scale = 1;
 
   while (el && el.nodeName !== 'html') {
@@ -611,6 +613,34 @@ export function getTransformScale(el) {
       }
     }
     el = el.parentElement;
+  }
+
+  _cssTransformScale = scale;
+  return scale;
+}
+
+/**
+ * Returns the css transform scale factor affecting video player
+ *
+ * @param {Element} el
+ *        Element of which (and the parents) to get the css transform scale from, if needed
+ *
+ * @return {number}
+ *        The scale factor of the element and it's parents
+ */
+export function getTransformScale(el) {
+  let scale = _cssTransformScale;
+
+  if (_cssTransformScale === undefined) {
+    scale = calculateTransformScale(el);
+    window.addEventListener('resize', () => {
+      if (!isNaN(this.timeout)) {
+        clearTimeout(this.timeout);
+      }
+
+      // Set a timeout to wait the css scale to be set
+      this.timeout = setTimeout(calculateTransformScale, 100, el);
+    });
   }
   return scale;
 }

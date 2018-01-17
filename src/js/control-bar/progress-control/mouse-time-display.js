@@ -65,7 +65,7 @@ class MouseTimeDisplay extends Component {
     this.rafId_ = this.requestAnimationFrame(() => {
       const duration = this.player_.duration();
       const content = formatTime(seekBarPoint * duration, duration);
-      const scale = Dom.getTransformScale(this.el_);
+      const scale = Dom.getTransformScale();
 
       this.el_.style.left = `${seekBarRect.width / scale * seekBarPoint}px`;
       this.getChild('timeTooltip').update(seekBarRect, seekBarPoint, content);

@@ -86,8 +86,9 @@ class MouseTimeDisplay extends Component {
    */
   update(newTime, position) {
     const time = formatTime(newTime, this.player_.duration());
+    const scale = Dom.getTransformScale(this.player_);
 
-    this.el().style.left = position + 'px';
+    this.el().style.left = (position / scale) + 'px';
     this.el().setAttribute('data-current-time', time);
 
     if (this.keepTooltipsInside) {

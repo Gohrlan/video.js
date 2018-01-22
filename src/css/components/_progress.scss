@@ -27,6 +27,15 @@
   @include flex(auto);
   @include transition(all 0.2s);
   height: 0.3em;
+  
+  &:after {
+    position: absolute;
+    content: "";
+    height: 2em;
+    width: 100%;
+    left: 0;
+    top: -0.85em;
+  }
 }
 
 .video-js .vjs-progress-control .vjs-progress-holder {

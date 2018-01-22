@@ -718,7 +718,6 @@ var CloseButton = function (_Button) {
 
 _component2['default'].registerComponent('CloseButton', CloseButton);
 exports['default'] = CloseButton;
-
 },{"2":2,"5":5}],5:[function(_dereq_,module,exports){
 'use strict';
 

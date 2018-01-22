@@ -666,6 +666,13 @@ body.vjs-full-window {
   -o-transition: all 0.2s;
   transition: all 0.2s;
   height: 0.3em; }
+  .video-js .vjs-progress-holder:after {
+    position: absolute;
+    content: "";
+    height: 2em;
+    width: 100%;
+    left: 0;
+    top: -0.85em; }
 
 .video-js .vjs-progress-control:hover .vjs-progress-holder {
   font-size: 1.666666666666666666em; }

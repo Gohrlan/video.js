@@ -20638,7 +20638,6 @@ TextTrack.prototype.allowedEvents_ = {
 };
 
 exports['default'] = TextTrack;
-
 },{"103":103,"67":67,"73":73,"75":75,"78":78,"83":83,"86":86,"87":87,"92":92,"97":97}],73:[function(_dereq_,module,exports){
 'use strict';
 
@@ -24668,6 +24667,7 @@ if (typeof define === 'function' && define.amd) {
 }
 
 exports['default'] = videojs;
+
 },{"103":103,"42":42,"43":43,"5":5,"51":51,"52":52,"56":56,"62":62,"64":64,"72":72,"77":77,"78":78,"80":80,"81":81,"82":82,"83":83,"84":84,"86":86,"87":87,"88":88,"89":89,"90":90,"92":92,"96":96,"97":97}],94:[function(_dereq_,module,exports){
 
 },{}],95:[function(_dereq_,module,exports){

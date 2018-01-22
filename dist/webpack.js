@@ -1732,7 +1732,7 @@
 	  var scale = _cssTransformScale;
 
 	  if (_cssTransformScale === undefined) {
-	    scale = calculateTransformScale(el);
+	    scale = el.parentElement === undefined ? 1 : calculateTransformScale(el);
 	    _window2['default'].addEventListener('resize', function () {
 	      if (!isNaN(_this.timeout)) {
 	        clearTimeout(_this.timeout);
@@ -20553,7 +20553,7 @@
 
 	  MouseTimeDisplay.prototype.update = function update(newTime, position) {
 	    var time = (0, _formatTime2['default'])(newTime, this.player_.duration());
-	    var scale = Dom.getTransformScale(this.el_);
+	    var scale = Dom.getTransformScale(this.player_);
 
 	    this.el().style.left = position / scale + 'px';
 	    this.el().setAttribute('data-current-time', time);

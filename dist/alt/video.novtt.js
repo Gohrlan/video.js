@@ -12482,6 +12482,7 @@ TECH_EVENTS_RETRIGGER.forEach(function (event) {
 
 _component2['default'].registerComponent('Player', Player);
 exports['default'] = Player;
+
 },{"1":1,"100":100,"4":4,"41":41,"44":44,"45":45,"46":46,"5":5,"50":50,"55":55,"59":59,"60":60,"61":61,"62":62,"63":63,"68":68,"69":69,"71":71,"76":76,"78":78,"79":79,"8":8,"81":81,"82":82,"83":83,"85":85,"86":86,"87":87,"88":88,"89":89,"90":90,"91":91,"96":96,"97":97}],52:[function(_dereq_,module,exports){
 'use strict';
 
@@ -22397,6 +22398,7 @@ function calculateTransformScale(el) {
  *        The scale factor of the element and it's parents
  */
 function getTransformScale(el) {
+  // get player element
   if (el.playerEl === undefined) {
     if (el.player_ !== undefined) {
       // el == Player object
@@ -22415,9 +22417,9 @@ function getTransformScale(el) {
       }
     }
   }
-  var scale = el.playerEl._cssTransformScale;
+  var scale = void 0;
 
-  if (scale === undefined) {
+  if (el.playerEl && el.playerEl._cssTransformScale === undefined) {
     scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
 
     var onResize = function onResize() {
@@ -22434,6 +22436,8 @@ function getTransformScale(el) {
     if (el.playerEl.player) {
       el.playerEl.player.on('fullscreenchange', onResize);
     }
+  } else {
+    scale = 1;
   }
   return scale;
 }
@@ -24695,6 +24699,7 @@ if (typeof define === 'function' && define.amd) {
 }
 
 exports['default'] = videojs;
+
 },{"103":103,"42":42,"43":43,"5":5,"51":51,"52":52,"56":56,"62":62,"64":64,"72":72,"77":77,"78":78,"80":80,"81":81,"82":82,"83":83,"84":84,"86":86,"87":87,"88":88,"89":89,"90":90,"92":92,"96":96,"97":97}],94:[function(_dereq_,module,exports){
 
 },{}],95:[function(_dereq_,module,exports){

@@ -1,13 +1,13 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.videojs = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _button = _dereq_(2);
+var _button = require('./button.js');
 
 var _button2 = _interopRequireDefault(_button);
 
-var _component = _dereq_(5);
+var _component = require('./component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -121,24 +121,25 @@ BigPlayButton.prototype.controlText_ = 'Play Video';
 
 _component2['default'].registerComponent('BigPlayButton', BigPlayButton);
 exports['default'] = BigPlayButton;
-},{"2":2,"5":5}],2:[function(_dereq_,module,exports){
+
+},{"./button.js":2,"./component.js":5}],2:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _clickableComponent = _dereq_(3);
+var _clickableComponent = require('./clickable-component.js');
 
 var _clickableComponent2 = _interopRequireDefault(_clickableComponent);
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _log = _dereq_(86);
+var _log = require('./utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _obj = _dereq_(88);
+var _obj = require('./utils/obj');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -298,36 +299,37 @@ var Button = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('Button', Button);
 exports['default'] = Button;
-},{"3":3,"5":5,"86":86,"88":88}],3:[function(_dereq_,module,exports){
+
+},{"./clickable-component.js":3,"./component":5,"./utils/log.js":86,"./utils/obj":88}],3:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _events = _dereq_(82);
+var _events = require('./utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
-var _fn = _dereq_(83);
+var _fn = require('./utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _log = _dereq_(86);
+var _log = require('./utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _obj = _dereq_(88);
+var _obj = require('./utils/obj');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -620,16 +622,17 @@ var ClickableComponent = function (_Component) {
 
 _component2['default'].registerComponent('ClickableComponent', ClickableComponent);
 exports['default'] = ClickableComponent;
-},{"5":5,"81":81,"82":82,"83":83,"86":86,"88":88,"96":96}],4:[function(_dereq_,module,exports){
+
+},{"./component":5,"./utils/dom.js":81,"./utils/events.js":82,"./utils/fn.js":83,"./utils/log.js":86,"./utils/obj":88,"global/document":96}],4:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _button = _dereq_(2);
+var _button = require('./button');
 
 var _button2 = _interopRequireDefault(_button);
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -719,40 +722,40 @@ var CloseButton = function (_Button) {
 _component2['default'].registerComponent('CloseButton', CloseButton);
 exports['default'] = CloseButton;
 
-},{"2":2,"5":5}],5:[function(_dereq_,module,exports){
+},{"./button":2,"./component":5}],5:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('./utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _guid = _dereq_(85);
+var _guid = require('./utils/guid.js');
 
 var Guid = _interopRequireWildcard(_guid);
 
-var _events = _dereq_(82);
+var _events = require('./utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
-var _log = _dereq_(86);
+var _log = require('./utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _toTitleCase = _dereq_(91);
+var _toTitleCase = require('./utils/to-title-case.js');
 
 var _toTitleCase2 = _interopRequireDefault(_toTitleCase);
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('./utils/merge-options.js');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
@@ -2546,20 +2549,21 @@ var Component = function () {
 
 Component.registerComponent('Component', Component);
 exports['default'] = Component;
-},{"81":81,"82":82,"83":83,"85":85,"86":86,"87":87,"91":91,"97":97}],6:[function(_dereq_,module,exports){
+
+},{"./utils/dom.js":81,"./utils/events.js":82,"./utils/fn.js":83,"./utils/guid.js":85,"./utils/log.js":86,"./utils/merge-options.js":87,"./utils/to-title-case.js":91,"global/window":97}],6:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackButton = _dereq_(36);
+var _trackButton = require('../track-button.js');
 
 var _trackButton2 = _interopRequireDefault(_trackButton);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _audioTrackMenuItem = _dereq_(7);
+var _audioTrackMenuItem = require('./audio-track-menu-item.js');
 
 var _audioTrackMenuItem2 = _interopRequireDefault(_audioTrackMenuItem);
 
@@ -2666,20 +2670,21 @@ var AudioTrackButton = function (_TrackButton) {
 AudioTrackButton.prototype.controlText_ = 'Audio Track';
 _component2['default'].registerComponent('AudioTrackButton', AudioTrackButton);
 exports['default'] = AudioTrackButton;
-},{"36":36,"5":5,"7":7}],7:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../track-button.js":36,"./audio-track-menu-item.js":7}],7:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _menuItem = _dereq_(48);
+var _menuItem = require('../../menu/menu-item.js');
 
 var _menuItem2 = _interopRequireDefault(_menuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
@@ -2786,50 +2791,51 @@ var AudioTrackMenuItem = function (_MenuItem) {
 
 _component2['default'].registerComponent('AudioTrackMenuItem', AudioTrackMenuItem);
 exports['default'] = AudioTrackMenuItem;
-},{"48":48,"5":5,"83":83}],8:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../menu/menu-item.js":48,"../../utils/fn.js":83}],8:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-_dereq_(12);
+require('./play-toggle.js');
 
-_dereq_(32);
+require('./time-controls/current-time-display.js');
 
-_dereq_(33);
+require('./time-controls/duration-display.js');
 
-_dereq_(35);
+require('./time-controls/time-divider.js');
 
-_dereq_(34);
+require('./time-controls/remaining-time-display.js');
 
-_dereq_(10);
+require('./live-display.js');
 
-_dereq_(18);
+require('./progress-control/progress-control.js');
 
-_dereq_(9);
+require('./fullscreen-toggle.js');
 
-_dereq_(38);
+require('./volume-control/volume-control.js');
 
-_dereq_(40);
+require('./volume-menu-button.js');
 
-_dereq_(11);
+require('./mute-toggle.js');
 
-_dereq_(25);
+require('./text-track-controls/chapters-button.js');
 
-_dereq_(27);
+require('./text-track-controls/descriptions-button.js');
 
-_dereq_(29);
+require('./text-track-controls/subtitles-button.js');
 
-_dereq_(24);
+require('./text-track-controls/captions-button.js');
 
-_dereq_(6);
+require('./audio-track-controls/audio-track-button.js');
 
-_dereq_(13);
+require('./playback-rate-menu/playback-rate-menu-button.js');
 
-_dereq_(21);
+require('./spacer-controls/custom-control-spacer.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -2892,16 +2898,17 @@ ControlBar.prototype.options_ = {
 
 _component2['default'].registerComponent('ControlBar', ControlBar);
 exports['default'] = ControlBar;
-},{"10":10,"11":11,"12":12,"13":13,"18":18,"21":21,"24":24,"25":25,"27":27,"29":29,"32":32,"33":33,"34":34,"35":35,"38":38,"40":40,"5":5,"6":6,"9":9}],9:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"./audio-track-controls/audio-track-button.js":6,"./fullscreen-toggle.js":9,"./live-display.js":10,"./mute-toggle.js":11,"./play-toggle.js":12,"./playback-rate-menu/playback-rate-menu-button.js":13,"./progress-control/progress-control.js":18,"./spacer-controls/custom-control-spacer.js":21,"./text-track-controls/captions-button.js":24,"./text-track-controls/chapters-button.js":25,"./text-track-controls/descriptions-button.js":27,"./text-track-controls/subtitles-button.js":29,"./time-controls/current-time-display.js":32,"./time-controls/duration-display.js":33,"./time-controls/remaining-time-display.js":34,"./time-controls/time-divider.js":35,"./volume-control/volume-control.js":38,"./volume-menu-button.js":40}],9:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _button = _dereq_(2);
+var _button = require('../button.js');
 
 var _button2 = _interopRequireDefault(_button);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -3009,16 +3016,17 @@ FullscreenToggle.prototype.controlText_ = 'Fullscreen';
 
 _component2['default'].registerComponent('FullscreenToggle', FullscreenToggle);
 exports['default'] = FullscreenToggle;
-},{"2":2,"5":5}],10:[function(_dereq_,module,exports){
+
+},{"../button.js":2,"../component.js":5}],10:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
@@ -3112,20 +3120,21 @@ var LiveDisplay = function (_Component) {
 
 _component2['default'].registerComponent('LiveDisplay', LiveDisplay);
 exports['default'] = LiveDisplay;
-},{"5":5,"81":81}],11:[function(_dereq_,module,exports){
+
+},{"../component":5,"../utils/dom.js":81}],11:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _button = _dereq_(2);
+var _button = require('../button');
 
 var _button2 = _interopRequireDefault(_button);
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
@@ -3267,16 +3276,17 @@ MuteToggle.prototype.controlText_ = 'Mute';
 
 _component2['default'].registerComponent('MuteToggle', MuteToggle);
 exports['default'] = MuteToggle;
-},{"2":2,"5":5,"81":81}],12:[function(_dereq_,module,exports){
+
+},{"../button":2,"../component":5,"../utils/dom.js":81}],12:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _button = _dereq_(2);
+var _button = require('../button.js');
 
 var _button2 = _interopRequireDefault(_button);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -3400,28 +3410,29 @@ PlayToggle.prototype.controlText_ = 'Play';
 
 _component2['default'].registerComponent('PlayToggle', PlayToggle);
 exports['default'] = PlayToggle;
-},{"2":2,"5":5}],13:[function(_dereq_,module,exports){
+
+},{"../button.js":2,"../component.js":5}],13:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _menuButton = _dereq_(47);
+var _menuButton = require('../../menu/menu-button.js');
 
 var _menuButton2 = _interopRequireDefault(_menuButton);
 
-var _menu = _dereq_(49);
+var _menu = require('../../menu/menu.js');
 
 var _menu2 = _interopRequireDefault(_menu);
 
-var _playbackRateMenuItem = _dereq_(14);
+var _playbackRateMenuItem = require('./playback-rate-menu-item.js');
 
 var _playbackRateMenuItem2 = _interopRequireDefault(_playbackRateMenuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
@@ -3636,16 +3647,17 @@ PlaybackRateMenuButton.prototype.controlText_ = 'Playback Rate';
 
 _component2['default'].registerComponent('PlaybackRateMenuButton', PlaybackRateMenuButton);
 exports['default'] = PlaybackRateMenuButton;
-},{"14":14,"47":47,"49":49,"5":5,"81":81}],14:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../menu/menu-button.js":47,"../../menu/menu.js":49,"../../utils/dom.js":81,"./playback-rate-menu-item.js":14}],14:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _menuItem = _dereq_(48);
+var _menuItem = require('../../menu/menu-item.js');
 
 var _menuItem2 = _interopRequireDefault(_menuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -3744,16 +3756,17 @@ PlaybackRateMenuItem.prototype.contentElType = 'button';
 
 _component2['default'].registerComponent('PlaybackRateMenuItem', PlaybackRateMenuItem);
 exports['default'] = PlaybackRateMenuItem;
-},{"48":48,"5":5}],15:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../menu/menu-item.js":48}],15:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
@@ -3867,28 +3880,29 @@ var LoadProgressBar = function (_Component) {
 
 _component2['default'].registerComponent('LoadProgressBar', LoadProgressBar);
 exports['default'] = LoadProgressBar;
-},{"5":5,"81":81}],16:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/dom.js":81}],16:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
-var _computedStyle = _dereq_(80);
+var _computedStyle = require('../../utils/computed-style.js');
 
 var _computedStyle2 = _interopRequireDefault(_computedStyle);
 
@@ -4063,20 +4077,21 @@ var MouseTimeDisplay = function (_Component) {
 
 _component2['default'].registerComponent('MouseTimeDisplay', MouseTimeDisplay);
 exports['default'] = MouseTimeDisplay;
-},{"5":5,"80":80,"81":81,"83":83,"84":84}],17:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/computed-style.js":80,"../../utils/dom.js":81,"../../utils/fn.js":83,"../../utils/format-time.js":84}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
@@ -4165,18 +4180,19 @@ var PlayProgressBar = function (_Component) {
 
 _component2['default'].registerComponent('PlayProgressBar', PlayProgressBar);
 exports['default'] = PlayProgressBar;
-},{"5":5,"83":83,"84":84}],18:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/fn.js":83,"../../utils/format-time.js":84}],18:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-_dereq_(19);
+require('./seek-bar.js');
 
-_dereq_(16);
+require('./mouse-time-display.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -4233,36 +4249,37 @@ ProgressControl.prototype.options_ = {
 
 _component2['default'].registerComponent('ProgressControl', ProgressControl);
 exports['default'] = ProgressControl;
-},{"16":16,"19":19,"5":5}],19:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"./mouse-time-display.js":16,"./seek-bar.js":19}],19:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _slider = _dereq_(57);
+var _slider = require('../../slider/slider.js');
 
 var _slider2 = _interopRequireDefault(_slider);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
-var _computedStyle = _dereq_(80);
+var _computedStyle = require('../../utils/computed-style.js');
 
 var _computedStyle2 = _interopRequireDefault(_computedStyle);
 
-_dereq_(15);
+require('./load-progress-bar.js');
 
-_dereq_(17);
+require('./play-progress-bar.js');
 
-_dereq_(20);
+require('./tooltip-progress-bar.js');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -4494,20 +4511,21 @@ SeekBar.prototype.playerEvent = 'timeupdate';
 
 _component2['default'].registerComponent('SeekBar', SeekBar);
 exports['default'] = SeekBar;
-},{"15":15,"17":17,"20":20,"5":5,"57":57,"80":80,"83":83,"84":84}],20:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../slider/slider.js":57,"../../utils/computed-style.js":80,"../../utils/fn.js":83,"../../utils/format-time.js":84,"./load-progress-bar.js":15,"./play-progress-bar.js":17,"./tooltip-progress-bar.js":20}],20:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
@@ -4594,16 +4612,17 @@ var TooltipProgressBar = function (_Component) {
 
 _component2['default'].registerComponent('TooltipProgressBar', TooltipProgressBar);
 exports['default'] = TooltipProgressBar;
-},{"5":5,"83":83,"84":84}],21:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/fn.js":83,"../../utils/format-time.js":84}],21:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _spacer = _dereq_(22);
+var _spacer = require('./spacer.js');
 
 var _spacer2 = _interopRequireDefault(_spacer);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -4666,12 +4685,13 @@ var CustomControlSpacer = function (_Spacer) {
 
 _component2['default'].registerComponent('CustomControlSpacer', CustomControlSpacer);
 exports['default'] = CustomControlSpacer;
-},{"22":22,"5":5}],22:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"./spacer.js":22}],22:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -4731,16 +4751,17 @@ var Spacer = function (_Component) {
 _component2['default'].registerComponent('Spacer', Spacer);
 
 exports['default'] = Spacer;
-},{"5":5}],23:[function(_dereq_,module,exports){
+
+},{"../../component.js":5}],23:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackMenuItem = _dereq_(31);
+var _textTrackMenuItem = require('./text-track-menu-item.js');
 
 var _textTrackMenuItem2 = _interopRequireDefault(_textTrackMenuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -4817,20 +4838,21 @@ var CaptionSettingsMenuItem = function (_TextTrackMenuItem) {
 
 _component2['default'].registerComponent('CaptionSettingsMenuItem', CaptionSettingsMenuItem);
 exports['default'] = CaptionSettingsMenuItem;
-},{"31":31,"5":5}],24:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"./text-track-menu-item.js":31}],24:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackButton = _dereq_(30);
+var _textTrackButton = require('./text-track-button.js');
 
 var _textTrackButton2 = _interopRequireDefault(_textTrackButton);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _captionSettingsMenuItem = _dereq_(23);
+var _captionSettingsMenuItem = require('./caption-settings-menu-item.js');
 
 var _captionSettingsMenuItem2 = _interopRequireDefault(_captionSettingsMenuItem);
 
@@ -4930,24 +4952,24 @@ CaptionsButton.prototype.controlText_ = 'Captions';
 _component2['default'].registerComponent('CaptionsButton', CaptionsButton);
 exports['default'] = CaptionsButton;
 
-},{"23":23,"30":30,"5":5}],25:[function(_dereq_,module,exports){
+},{"../../component.js":5,"./caption-settings-menu-item.js":23,"./text-track-button.js":30}],25:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackButton = _dereq_(30);
+var _textTrackButton = require('./text-track-button.js');
 
 var _textTrackButton2 = _interopRequireDefault(_textTrackButton);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _chaptersTrackMenuItem = _dereq_(26);
+var _chaptersTrackMenuItem = require('./chapters-track-menu-item.js');
 
 var _chaptersTrackMenuItem2 = _interopRequireDefault(_chaptersTrackMenuItem);
 
-var _toTitleCase = _dereq_(91);
+var _toTitleCase = require('../../utils/to-title-case.js');
 
 var _toTitleCase2 = _interopRequireDefault(_toTitleCase);
 
@@ -5171,20 +5193,21 @@ ChaptersButton.prototype.controlText_ = 'Chapters';
 
 _component2['default'].registerComponent('ChaptersButton', ChaptersButton);
 exports['default'] = ChaptersButton;
-},{"26":26,"30":30,"5":5,"91":91}],26:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/to-title-case.js":91,"./chapters-track-menu-item.js":26,"./text-track-button.js":30}],26:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _menuItem = _dereq_(48);
+var _menuItem = require('../../menu/menu-item.js');
 
 var _menuItem2 = _interopRequireDefault(_menuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
@@ -5280,20 +5303,21 @@ var ChaptersTrackMenuItem = function (_MenuItem) {
 
 _component2['default'].registerComponent('ChaptersTrackMenuItem', ChaptersTrackMenuItem);
 exports['default'] = ChaptersTrackMenuItem;
-},{"48":48,"5":5,"83":83}],27:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../menu/menu-item.js":48,"../../utils/fn.js":83}],27:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackButton = _dereq_(30);
+var _textTrackButton = require('./text-track-button.js');
 
 var _textTrackButton2 = _interopRequireDefault(_textTrackButton);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
@@ -5417,16 +5441,17 @@ DescriptionsButton.prototype.controlText_ = 'Descriptions';
 
 _component2['default'].registerComponent('DescriptionsButton', DescriptionsButton);
 exports['default'] = DescriptionsButton;
-},{"30":30,"5":5,"83":83}],28:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/fn.js":83,"./text-track-button.js":30}],28:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackMenuItem = _dereq_(31);
+var _textTrackMenuItem = require('./text-track-menu-item.js');
 
 var _textTrackMenuItem2 = _interopRequireDefault(_textTrackMenuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -5509,16 +5534,17 @@ var OffTextTrackMenuItem = function (_TextTrackMenuItem) {
 
 _component2['default'].registerComponent('OffTextTrackMenuItem', OffTextTrackMenuItem);
 exports['default'] = OffTextTrackMenuItem;
-},{"31":31,"5":5}],29:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"./text-track-menu-item.js":31}],29:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackButton = _dereq_(30);
+var _textTrackButton = require('./text-track-button.js');
 
 var _textTrackButton2 = _interopRequireDefault(_textTrackButton);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -5597,24 +5623,25 @@ SubtitlesButton.prototype.controlText_ = 'Subtitles';
 
 _component2['default'].registerComponent('SubtitlesButton', SubtitlesButton);
 exports['default'] = SubtitlesButton;
-},{"30":30,"5":5}],30:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"./text-track-button.js":30}],30:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackButton = _dereq_(36);
+var _trackButton = require('../track-button.js');
 
 var _trackButton2 = _interopRequireDefault(_trackButton);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _textTrackMenuItem = _dereq_(31);
+var _textTrackMenuItem = require('./text-track-menu-item.js');
 
 var _textTrackMenuItem2 = _interopRequireDefault(_textTrackMenuItem);
 
-var _offTextTrackMenuItem = _dereq_(28);
+var _offTextTrackMenuItem = require('./off-text-track-menu-item.js');
 
 var _offTextTrackMenuItem2 = _interopRequireDefault(_offTextTrackMenuItem);
 
@@ -5701,30 +5728,31 @@ var TextTrackButton = function (_TrackButton) {
 
 _component2['default'].registerComponent('TextTrackButton', TextTrackButton);
 exports['default'] = TextTrackButton;
-},{"28":28,"31":31,"36":36,"5":5}],31:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../track-button.js":36,"./off-text-track-menu-item.js":28,"./text-track-menu-item.js":31}],31:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _menuItem = _dereq_(48);
+var _menuItem = require('../../menu/menu-item.js');
 
 var _menuItem2 = _interopRequireDefault(_menuItem);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -5871,20 +5899,21 @@ var TextTrackMenuItem = function (_MenuItem) {
 
 _component2['default'].registerComponent('TextTrackMenuItem', TextTrackMenuItem);
 exports['default'] = TextTrackMenuItem;
-},{"48":48,"5":5,"83":83,"96":96,"97":97}],32:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../menu/menu-item.js":48,"../../utils/fn.js":83,"global/document":96,"global/window":97}],32:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
@@ -5980,20 +6009,21 @@ var CurrentTimeDisplay = function (_Component) {
 
 _component2['default'].registerComponent('CurrentTimeDisplay', CurrentTimeDisplay);
 exports['default'] = CurrentTimeDisplay;
-},{"5":5,"81":81,"84":84}],33:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/dom.js":81,"../../utils/format-time.js":84}],33:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
@@ -6099,20 +6129,21 @@ var DurationDisplay = function (_Component) {
 
 _component2['default'].registerComponent('DurationDisplay', DurationDisplay);
 exports['default'] = DurationDisplay;
-},{"5":5,"81":81,"84":84}],34:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/dom.js":81,"../../utils/format-time.js":84}],34:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('../../utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
@@ -6214,12 +6245,13 @@ var RemainingTimeDisplay = function (_Component) {
 
 _component2['default'].registerComponent('RemainingTimeDisplay', RemainingTimeDisplay);
 exports['default'] = RemainingTimeDisplay;
-},{"5":5,"81":81,"84":84}],35:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../utils/dom.js":81,"../../utils/format-time.js":84}],35:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -6267,20 +6299,21 @@ var TimeDivider = function (_Component) {
 
 _component2['default'].registerComponent('TimeDivider', TimeDivider);
 exports['default'] = TimeDivider;
-},{"5":5}],36:[function(_dereq_,module,exports){
+
+},{"../../component.js":5}],36:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _menuButton = _dereq_(47);
+var _menuButton = require('../menu/menu-button.js');
 
 var _menuButton2 = _interopRequireDefault(_menuButton);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
@@ -6346,24 +6379,25 @@ var TrackButton = function (_MenuButton) {
 
 _component2['default'].registerComponent('TrackButton', TrackButton);
 exports['default'] = TrackButton;
-},{"47":47,"5":5,"83":83}],37:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"../menu/menu-button.js":47,"../utils/fn.js":83}],37:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _slider = _dereq_(57);
+var _slider = require('../../slider/slider.js');
 
 var _slider2 = _interopRequireDefault(_slider);
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-_dereq_(39);
+require('./volume-level.js');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -6528,16 +6562,17 @@ VolumeBar.prototype.playerEvent = 'volumechange';
 
 _component2['default'].registerComponent('VolumeBar', VolumeBar);
 exports['default'] = VolumeBar;
-},{"39":39,"5":5,"57":57,"83":83}],38:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"../../slider/slider.js":57,"../../utils/fn.js":83,"./volume-level.js":39}],38:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-_dereq_(37);
+require('./volume-bar.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -6620,12 +6655,13 @@ VolumeControl.prototype.options_ = {
 
 _component2['default'].registerComponent('VolumeControl', VolumeControl);
 exports['default'] = VolumeControl;
-},{"37":37,"5":5}],39:[function(_dereq_,module,exports){
+
+},{"../../component.js":5,"./volume-bar.js":37}],39:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -6672,32 +6708,33 @@ var VolumeLevel = function (_Component) {
 
 _component2['default'].registerComponent('VolumeLevel', VolumeLevel);
 exports['default'] = VolumeLevel;
-},{"5":5}],40:[function(_dereq_,module,exports){
+
+},{"../../component.js":5}],40:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _popup = _dereq_(54);
+var _popup = require('../popup/popup.js');
 
 var _popup2 = _interopRequireDefault(_popup);
 
-var _popupButton = _dereq_(53);
+var _popupButton = require('../popup/popup-button.js');
 
 var _popupButton2 = _interopRequireDefault(_popupButton);
 
-var _muteToggle = _dereq_(11);
+var _muteToggle = require('./mute-toggle.js');
 
 var _muteToggle2 = _interopRequireDefault(_muteToggle);
 
-var _volumeBar = _dereq_(37);
+var _volumeBar = require('./volume-control/volume-bar.js');
 
 var _volumeBar2 = _interopRequireDefault(_volumeBar);
 
@@ -6916,20 +6953,21 @@ VolumeMenuButton.prototype.controlText_ = 'Mute';
 
 _component2['default'].registerComponent('VolumeMenuButton', VolumeMenuButton);
 exports['default'] = VolumeMenuButton;
-},{"11":11,"37":37,"5":5,"53":53,"54":54,"83":83}],41:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"../popup/popup-button.js":53,"../popup/popup.js":54,"../utils/fn.js":83,"./mute-toggle.js":11,"./volume-control/volume-bar.js":37}],41:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _modalDialog = _dereq_(50);
+var _modalDialog = require('./modal-dialog');
 
 var _modalDialog2 = _interopRequireDefault(_modalDialog);
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('./utils/merge-options');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
@@ -7018,12 +7056,13 @@ ErrorDisplay.prototype.options_ = (0, _mergeOptions2['default'])(_modalDialog2['
 
 _component2['default'].registerComponent('ErrorDisplay', ErrorDisplay);
 exports['default'] = ErrorDisplay;
-},{"5":5,"50":50,"87":87}],42:[function(_dereq_,module,exports){
+
+},{"./component":5,"./modal-dialog":50,"./utils/merge-options":87}],42:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _events = _dereq_(82);
+var _events = require('./utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
@@ -7188,18 +7227,19 @@ EventTarget.prototype.trigger = function (event) {
 EventTarget.prototype.dispatchEvent = EventTarget.prototype.trigger;
 
 exports['default'] = EventTarget;
-},{"82":82}],43:[function(_dereq_,module,exports){
+
+},{"./utils/events.js":82}],43:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _log = _dereq_(86);
+var _log = require('./utils/log');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _obj = _dereq_(88);
+var _obj = require('./utils/obj');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -7289,12 +7329,13 @@ var extendFn = function extendFn(superClass) {
 };
 
 exports['default'] = extendFn;
-},{"86":86,"88":88}],44:[function(_dereq_,module,exports){
+
+},{"./utils/log":86,"./utils/obj":88}],44:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -7345,12 +7386,13 @@ if (browserApi) {
 }
 
 exports['default'] = FullscreenApi;
-},{"96":96}],45:[function(_dereq_,module,exports){
+
+},{"global/document":96}],45:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -7397,12 +7439,13 @@ var LoadingSpinner = function (_Component) {
 
 _component2['default'].registerComponent('LoadingSpinner', LoadingSpinner);
 exports['default'] = LoadingSpinner;
-},{"5":5}],46:[function(_dereq_,module,exports){
+
+},{"./component":5}],46:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _obj = _dereq_(88);
+var _obj = require('./utils/obj');
 
 /**
  * A Custom `MediaError` class which mimics the standard HTML5 `MediaError` class.
@@ -7609,32 +7652,33 @@ for (var errNum = 0; errNum < MediaError.errorTypes.length; errNum++) {
  */
 
 exports['default'] = MediaError;
-},{"88":88}],47:[function(_dereq_,module,exports){
+
+},{"./utils/obj":88}],47:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _clickableComponent = _dereq_(3);
+var _clickableComponent = require('../clickable-component.js');
 
 var _clickableComponent2 = _interopRequireDefault(_clickableComponent);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _menu = _dereq_(49);
+var _menu = require('./menu.js');
 
 var _menu2 = _interopRequireDefault(_menu);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _toTitleCase = _dereq_(91);
+var _toTitleCase = require('../utils/to-title-case.js');
 
 var _toTitleCase2 = _interopRequireDefault(_toTitleCase);
 
@@ -7962,20 +8006,21 @@ var MenuButton = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('MenuButton', MenuButton);
 exports['default'] = MenuButton;
-},{"3":3,"49":49,"5":5,"81":81,"83":83,"91":91}],48:[function(_dereq_,module,exports){
+
+},{"../clickable-component.js":3,"../component.js":5,"../utils/dom.js":81,"../utils/fn.js":83,"../utils/to-title-case.js":91,"./menu.js":49}],48:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _clickableComponent = _dereq_(3);
+var _clickableComponent = require('../clickable-component.js');
 
 var _clickableComponent2 = _interopRequireDefault(_clickableComponent);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _obj = _dereq_(88);
+var _obj = require('../utils/obj');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -8101,24 +8146,25 @@ var MenuItem = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('MenuItem', MenuItem);
 exports['default'] = MenuItem;
-},{"3":3,"5":5,"88":88}],49:[function(_dereq_,module,exports){
+
+},{"../clickable-component.js":3,"../component.js":5,"../utils/obj":88}],49:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _events = _dereq_(82);
+var _events = require('../utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
@@ -8304,20 +8350,21 @@ var Menu = function (_Component) {
 
 _component2['default'].registerComponent('Menu', Menu);
 exports['default'] = Menu;
-},{"5":5,"81":81,"82":82,"83":83}],50:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"../utils/dom.js":81,"../utils/events.js":82,"../utils/fn.js":83}],50:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('./utils/fn');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -8798,118 +8845,119 @@ ModalDialog.prototype.options_ = {
 
 _component2['default'].registerComponent('ModalDialog', ModalDialog);
 exports['default'] = ModalDialog;
-},{"5":5,"81":81,"83":83}],51:[function(_dereq_,module,exports){
+
+},{"./component":5,"./utils/dom":81,"./utils/fn":83}],51:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('./component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _events = _dereq_(82);
+var _events = require('./utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('./utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _guid = _dereq_(85);
+var _guid = require('./utils/guid.js');
 
 var Guid = _interopRequireWildcard(_guid);
 
-var _browser = _dereq_(78);
+var _browser = require('./utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _log = _dereq_(86);
+var _log = require('./utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _toTitleCase = _dereq_(91);
+var _toTitleCase = require('./utils/to-title-case.js');
 
 var _toTitleCase2 = _interopRequireDefault(_toTitleCase);
 
-var _timeRanges = _dereq_(90);
+var _timeRanges = require('./utils/time-ranges.js');
 
-var _buffer = _dereq_(79);
+var _buffer = require('./utils/buffer.js');
 
-var _stylesheet = _dereq_(89);
+var _stylesheet = require('./utils/stylesheet.js');
 
 var stylesheet = _interopRequireWildcard(_stylesheet);
 
-var _fullscreenApi = _dereq_(44);
+var _fullscreenApi = require('./fullscreen-api.js');
 
 var _fullscreenApi2 = _interopRequireDefault(_fullscreenApi);
 
-var _mediaError = _dereq_(46);
+var _mediaError = require('./media-error.js');
 
 var _mediaError2 = _interopRequireDefault(_mediaError);
 
-var _tuple = _dereq_(100);
+var _tuple = require('safe-json-parse/tuple');
 
 var _tuple2 = _interopRequireDefault(_tuple);
 
-var _obj = _dereq_(88);
+var _obj = require('./utils/obj');
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('./utils/merge-options.js');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
-var _textTrackListConverter = _dereq_(69);
+var _textTrackListConverter = require('./tracks/text-track-list-converter.js');
 
 var _textTrackListConverter2 = _interopRequireDefault(_textTrackListConverter);
 
-var _modalDialog = _dereq_(50);
+var _modalDialog = require('./modal-dialog');
 
 var _modalDialog2 = _interopRequireDefault(_modalDialog);
 
-var _tech = _dereq_(62);
+var _tech = require('./tech/tech.js');
 
 var _tech2 = _interopRequireDefault(_tech);
 
-var _audioTrackList = _dereq_(63);
+var _audioTrackList = require('./tracks/audio-track-list.js');
 
 var _audioTrackList2 = _interopRequireDefault(_audioTrackList);
 
-var _videoTrackList = _dereq_(76);
+var _videoTrackList = require('./tracks/video-track-list.js');
 
 var _videoTrackList2 = _interopRequireDefault(_videoTrackList);
 
-_dereq_(61);
+require('./tech/loader.js');
 
-_dereq_(59);
+require('./tech/flash.js');
 
-_dereq_(55);
+require('./poster-image.js');
 
-_dereq_(68);
+require('./tracks/text-track-display.js');
 
-_dereq_(45);
+require('./loading-spinner.js');
 
-_dereq_(1);
+require('./big-play-button.js');
 
-_dereq_(4);
+require('./close-button.js');
 
-_dereq_(8);
+require('./control-bar/control-bar.js');
 
-_dereq_(41);
+require('./error-display.js');
 
-_dereq_(71);
+require('./tracks/text-track-settings.js');
 
-_dereq_(60);
+require('./tech/html5.js');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -12484,12 +12532,13 @@ TECH_EVENTS_RETRIGGER.forEach(function (event) {
 
 _component2['default'].registerComponent('Player', Player);
 exports['default'] = Player;
-},{"1":1,"100":100,"4":4,"41":41,"44":44,"45":45,"46":46,"5":5,"50":50,"55":55,"59":59,"60":60,"61":61,"62":62,"63":63,"68":68,"69":69,"71":71,"76":76,"78":78,"79":79,"8":8,"81":81,"82":82,"83":83,"85":85,"86":86,"87":87,"88":88,"89":89,"90":90,"91":91,"96":96,"97":97}],52:[function(_dereq_,module,exports){
+
+},{"./big-play-button.js":1,"./close-button.js":4,"./component.js":5,"./control-bar/control-bar.js":8,"./error-display.js":41,"./fullscreen-api.js":44,"./loading-spinner.js":45,"./media-error.js":46,"./modal-dialog":50,"./poster-image.js":55,"./tech/flash.js":59,"./tech/html5.js":60,"./tech/loader.js":61,"./tech/tech.js":62,"./tracks/audio-track-list.js":63,"./tracks/text-track-display.js":68,"./tracks/text-track-list-converter.js":69,"./tracks/text-track-settings.js":71,"./tracks/video-track-list.js":76,"./utils/browser.js":78,"./utils/buffer.js":79,"./utils/dom.js":81,"./utils/events.js":82,"./utils/fn.js":83,"./utils/guid.js":85,"./utils/log.js":86,"./utils/merge-options.js":87,"./utils/obj":88,"./utils/stylesheet.js":89,"./utils/time-ranges.js":90,"./utils/to-title-case.js":91,"global/document":96,"global/window":97,"safe-json-parse/tuple":100}],52:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _player = _dereq_(51);
+var _player = require('./player.js');
 
 var _player2 = _interopRequireDefault(_player);
 
@@ -12511,16 +12560,17 @@ var plugin = function plugin(name, init) {
     * @module plugins
     */
 exports['default'] = plugin;
-},{"51":51}],53:[function(_dereq_,module,exports){
+
+},{"./player.js":51}],53:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _clickableComponent = _dereq_(3);
+var _clickableComponent = require('../clickable-component.js');
 
 var _clickableComponent2 = _interopRequireDefault(_clickableComponent);
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -12634,24 +12684,25 @@ var PopupButton = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('PopupButton', PopupButton);
 exports['default'] = PopupButton;
-},{"3":3,"5":5}],54:[function(_dereq_,module,exports){
+
+},{"../clickable-component.js":3,"../component.js":5}],54:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _events = _dereq_(82);
+var _events = require('../utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
@@ -12733,28 +12784,29 @@ var Popup = function (_Component) {
 
 _component2['default'].registerComponent('Popup', Popup);
 exports['default'] = Popup;
-},{"5":5,"81":81,"82":82,"83":83}],55:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"../utils/dom.js":81,"../utils/events.js":82,"../utils/fn.js":83}],55:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _clickableComponent = _dereq_(3);
+var _clickableComponent = require('./clickable-component.js');
 
 var _clickableComponent2 = _interopRequireDefault(_clickableComponent);
 
-var _component = _dereq_(5);
+var _component = require('./component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('./utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _browser = _dereq_(78);
+var _browser = require('./utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
@@ -12915,25 +12967,26 @@ var PosterImage = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('PosterImage', PosterImage);
 exports['default'] = PosterImage;
-},{"3":3,"5":5,"78":78,"81":81,"83":83}],56:[function(_dereq_,module,exports){
+
+},{"./clickable-component.js":3,"./component.js":5,"./utils/browser.js":78,"./utils/dom.js":81,"./utils/fn.js":83}],56:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.hasLoaded = exports.autoSetupTimeout = exports.autoSetup = undefined;
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _events = _dereq_(82);
+var _events = require('./utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
@@ -13060,20 +13113,21 @@ var hasLoaded = function hasLoaded() {
 exports.autoSetup = autoSetup;
 exports.autoSetupTimeout = autoSetupTimeout;
 exports.hasLoaded = hasLoaded;
-},{"81":81,"82":82,"96":96,"97":97}],57:[function(_dereq_,module,exports){
+
+},{"./utils/dom":81,"./utils/events.js":82,"global/document":96,"global/window":97}],57:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _obj = _dereq_(88);
+var _obj = require('../utils/obj');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -13414,7 +13468,8 @@ var Slider = function (_Component) {
 
 _component2['default'].registerComponent('Slider', Slider);
 exports['default'] = Slider;
-},{"5":5,"81":81,"88":88}],58:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"../utils/dom.js":81,"../utils/obj":88}],58:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -13617,38 +13672,39 @@ function FlashRtmpDecorator(Flash) {
 }
 
 exports['default'] = FlashRtmpDecorator;
-},{}],59:[function(_dereq_,module,exports){
+
+},{}],59:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _tech = _dereq_(62);
+var _tech = require('./tech');
 
 var _tech2 = _interopRequireDefault(_tech);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _url = _dereq_(92);
+var _url = require('../utils/url.js');
 
 var Url = _interopRequireWildcard(_url);
 
-var _timeRanges = _dereq_(90);
+var _timeRanges = require('../utils/time-ranges.js');
 
-var _flashRtmp = _dereq_(58);
+var _flashRtmp = require('./flash-rtmp');
 
 var _flashRtmp2 = _interopRequireDefault(_flashRtmp);
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _obj = _dereq_(88);
+var _obj = require('../utils/obj');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -14798,60 +14854,61 @@ Flash.getEmbedCode = function (swf, flashVars, params, attributes) {
 _component2['default'].registerComponent('Flash', Flash);
 _tech2['default'].registerTech('Flash', Flash);
 exports['default'] = Flash;
-},{"5":5,"58":58,"62":62,"81":81,"88":88,"90":90,"92":92,"97":97}],60:[function(_dereq_,module,exports){
+
+},{"../component":5,"../utils/dom.js":81,"../utils/obj":88,"../utils/time-ranges.js":90,"../utils/url.js":92,"./flash-rtmp":58,"./tech":62,"global/window":97}],60:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
 var _templateObject = _taggedTemplateLiteralLoose(['Text Tracks are being loaded from another origin but the crossorigin attribute isn\'t used.\n            This may prevent text tracks from loading.'], ['Text Tracks are being loaded from another origin but the crossorigin attribute isn\'t used.\n            This may prevent text tracks from loading.']);
 
-var _tech = _dereq_(62);
+var _tech = require('./tech.js');
 
 var _tech2 = _interopRequireDefault(_tech);
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _url = _dereq_(92);
+var _url = require('../utils/url.js');
 
 var Url = _interopRequireWildcard(_url);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _log = _dereq_(86);
+var _log = require('../utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _tsml = _dereq_(102);
+var _tsml = require('tsml');
 
 var _tsml2 = _interopRequireDefault(_tsml);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _obj = _dereq_(88);
+var _obj = require('../utils/obj');
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('../utils/merge-options.js');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
-var _toTitleCase = _dereq_(91);
+var _toTitleCase = require('../utils/to-title-case.js');
 
 var _toTitleCase2 = _interopRequireDefault(_toTitleCase);
 
@@ -16740,20 +16797,21 @@ Html5.registerSourceHandler(Html5.nativeSourceHandler);
 _component2['default'].registerComponent('Html5', Html5);
 _tech2['default'].registerTech('Html5', Html5);
 exports['default'] = Html5;
-},{"102":102,"5":5,"62":62,"78":78,"81":81,"83":83,"86":86,"87":87,"88":88,"91":91,"92":92,"96":96,"97":97}],61:[function(_dereq_,module,exports){
+
+},{"../component":5,"../utils/browser.js":78,"../utils/dom.js":81,"../utils/fn.js":83,"../utils/log.js":86,"../utils/merge-options.js":87,"../utils/obj":88,"../utils/to-title-case.js":91,"../utils/url.js":92,"./tech.js":62,"global/document":96,"global/window":97,"tsml":102}],61:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component.js');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _tech = _dereq_(62);
+var _tech = require('./tech.js');
 
 var _tech2 = _interopRequireDefault(_tech);
 
-var _toTitleCase = _dereq_(91);
+var _toTitleCase = require('../utils/to-title-case.js');
 
 var _toTitleCase2 = _interopRequireDefault(_toTitleCase);
 
@@ -16829,68 +16887,69 @@ var MediaLoader = function (_Component) {
 
 _component2['default'].registerComponent('MediaLoader', MediaLoader);
 exports['default'] = MediaLoader;
-},{"5":5,"62":62,"91":91}],62:[function(_dereq_,module,exports){
+
+},{"../component.js":5,"../utils/to-title-case.js":91,"./tech.js":62}],62:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _htmlTrackElement = _dereq_(66);
+var _htmlTrackElement = require('../tracks/html-track-element');
 
 var _htmlTrackElement2 = _interopRequireDefault(_htmlTrackElement);
 
-var _htmlTrackElementList = _dereq_(65);
+var _htmlTrackElementList = require('../tracks/html-track-element-list');
 
 var _htmlTrackElementList2 = _interopRequireDefault(_htmlTrackElementList);
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('../utils/merge-options.js');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
-var _textTrack = _dereq_(72);
+var _textTrack = require('../tracks/text-track');
 
 var _textTrack2 = _interopRequireDefault(_textTrack);
 
-var _textTrackList = _dereq_(70);
+var _textTrackList = require('../tracks/text-track-list');
 
 var _textTrackList2 = _interopRequireDefault(_textTrackList);
 
-var _videoTrackList = _dereq_(76);
+var _videoTrackList = require('../tracks/video-track-list');
 
 var _videoTrackList2 = _interopRequireDefault(_videoTrackList);
 
-var _audioTrackList = _dereq_(63);
+var _audioTrackList = require('../tracks/audio-track-list');
 
 var _audioTrackList2 = _interopRequireDefault(_audioTrackList);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _log = _dereq_(86);
+var _log = require('../utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _timeRanges = _dereq_(90);
+var _timeRanges = require('../utils/time-ranges.js');
 
-var _buffer = _dereq_(79);
+var _buffer = require('../utils/buffer.js');
 
-var _mediaError = _dereq_(46);
+var _mediaError = require('../media-error.js');
 
 var _mediaError2 = _interopRequireDefault(_mediaError);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _obj = _dereq_(88);
+var _obj = require('../utils/obj');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -17481,7 +17540,7 @@ var Tech = function (_Component) {
     // signals that the Tech is ready at which point Tech.el_ is part of the DOM
     // before inserting the WebVTT script
     if (_document2['default'].body.contains(this.el())) {
-      var vtt = _dereq_(103);
+      var vtt = require('videojs-vtt.js');
 
       // load via require if available and vtt.js script location was not passed in
       // as an option. novtt builds will turn the above require call into an empty object
@@ -18245,20 +18304,21 @@ _component2['default'].registerComponent('Tech', Tech);
 _component2['default'].registerComponent('MediaTechController', Tech);
 Tech.registerTech('Tech', Tech);
 exports['default'] = Tech;
-},{"103":103,"46":46,"5":5,"63":63,"65":65,"66":66,"70":70,"72":72,"76":76,"79":79,"83":83,"86":86,"87":87,"88":88,"90":90,"96":96,"97":97}],63:[function(_dereq_,module,exports){
+
+},{"../component":5,"../media-error.js":46,"../tracks/audio-track-list":63,"../tracks/html-track-element":66,"../tracks/html-track-element-list":65,"../tracks/text-track":72,"../tracks/text-track-list":70,"../tracks/video-track-list":76,"../utils/buffer.js":79,"../utils/fn.js":83,"../utils/log.js":86,"../utils/merge-options.js":87,"../utils/obj":88,"../utils/time-ranges.js":90,"global/document":96,"global/window":97,"videojs-vtt.js":103}],63:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackList = _dereq_(74);
+var _trackList = require('./track-list');
 
 var _trackList2 = _interopRequireDefault(_trackList);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -18427,22 +18487,23 @@ var AudioTrackList = function (_TrackList) {
 }(_trackList2['default']);
 
 exports['default'] = AudioTrackList;
-},{"74":74,"78":78,"96":96}],64:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"./track-list":74,"global/document":96}],64:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackEnums = _dereq_(73);
+var _trackEnums = require('./track-enums');
 
-var _track = _dereq_(75);
+var _track = require('./track');
 
 var _track2 = _interopRequireDefault(_track);
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('../utils/merge-options');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
@@ -18557,16 +18618,17 @@ var AudioTrack = function (_Track) {
 }(_track2['default']);
 
 exports['default'] = AudioTrack;
-},{"73":73,"75":75,"78":78,"87":87}],65:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"../utils/merge-options":87,"./track":75,"./track-enums":73}],65:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -18706,24 +18768,25 @@ var HtmlTrackElementList = function () {
 }();
 
 exports['default'] = HtmlTrackElementList;
-},{"78":78,"96":96}],66:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"global/document":96}],66:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _eventTarget = _dereq_(42);
+var _eventTarget = require('../event-target');
 
 var _eventTarget2 = _interopRequireDefault(_eventTarget);
 
-var _textTrack = _dereq_(72);
+var _textTrack = require('../tracks/text-track');
 
 var _textTrack2 = _interopRequireDefault(_textTrack);
 
@@ -18876,16 +18939,17 @@ HTMLTrackElement.LOADED = LOADED;
 HTMLTrackElement.ERROR = ERROR;
 
 exports['default'] = HTMLTrackElement;
-},{"42":42,"72":72,"78":78,"96":96}],67:[function(_dereq_,module,exports){
+
+},{"../event-target":42,"../tracks/text-track":72,"../utils/browser.js":78,"global/document":96}],67:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -19029,20 +19093,21 @@ var TextTrackCueList = function () {
 }();
 
 exports['default'] = TextTrackCueList;
-},{"78":78,"96":96}],68:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"global/document":96}],68:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
@@ -19380,7 +19445,8 @@ var TextTrackDisplay = function (_Component) {
 
 _component2['default'].registerComponent('TextTrackDisplay', TextTrackDisplay);
 exports['default'] = TextTrackDisplay;
-},{"5":5,"83":83,"97":97}],69:[function(_dereq_,module,exports){
+
+},{"../component":5,"../utils/fn.js":83,"global/window":97}],69:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19483,24 +19549,25 @@ var jsonToTextTracks = function jsonToTextTracks(json, tech) {
 };
 
 exports['default'] = { textTracksToJson: textTracksToJson, jsonToTextTracks: jsonToTextTracks, trackToJson_: trackToJson_ };
-},{}],70:[function(_dereq_,module,exports){
+
+},{}],70:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackList = _dereq_(74);
+var _trackList = require('./track-list');
 
 var _trackList2 = _interopRequireDefault(_trackList);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -19588,30 +19655,31 @@ var TextTrackList = function (_TrackList) {
 }(_trackList2['default']);
 
 exports['default'] = TextTrackList;
-},{"74":74,"78":78,"83":83,"96":96}],71:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"../utils/fn.js":83,"./track-list":74,"global/document":96}],71:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _component = _dereq_(5);
+var _component = require('../component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _dom = _dereq_(81);
+var _dom = require('../utils/dom');
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _obj = _dereq_(88);
+var _obj = require('../utils/obj');
 
 var Obj = _interopRequireWildcard(_obj);
 
-var _log = _dereq_(86);
+var _log = require('../utils/log');
 
 var _log2 = _interopRequireDefault(_log);
 
@@ -20190,44 +20258,45 @@ var TextTrackSettings = function (_Component) {
 _component2['default'].registerComponent('TextTrackSettings', TextTrackSettings);
 
 exports['default'] = TextTrackSettings;
-},{"5":5,"81":81,"83":83,"86":86,"88":88,"97":97}],72:[function(_dereq_,module,exports){
+
+},{"../component":5,"../utils/dom":81,"../utils/fn":83,"../utils/log":86,"../utils/obj":88,"global/window":97}],72:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _textTrackCueList = _dereq_(67);
+var _textTrackCueList = require('./text-track-cue-list');
 
 var _textTrackCueList2 = _interopRequireDefault(_textTrackCueList);
 
-var _fn = _dereq_(83);
+var _fn = require('../utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _trackEnums = _dereq_(73);
+var _trackEnums = require('./track-enums');
 
-var _log = _dereq_(86);
+var _log = require('../utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _track = _dereq_(75);
+var _track = require('./track.js');
 
 var _track2 = _interopRequireDefault(_track);
 
-var _url = _dereq_(92);
+var _url = require('../utils/url.js');
 
-var _xhr = _dereq_(108);
+var _xhr = require('xhr');
 
 var _xhr2 = _interopRequireDefault(_xhr);
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('../utils/merge-options');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
@@ -20641,7 +20710,7 @@ TextTrack.prototype.allowedEvents_ = {
 
 exports['default'] = TextTrack;
 
-},{"108":108,"67":67,"73":73,"75":75,"78":78,"83":83,"86":86,"87":87,"92":92,"97":97}],73:[function(_dereq_,module,exports){
+},{"../utils/browser.js":78,"../utils/fn.js":83,"../utils/log.js":86,"../utils/merge-options":87,"../utils/url.js":92,"./text-track-cue-list":67,"./track-enums":73,"./track.js":75,"global/window":97,"xhr":108}],73:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -20708,20 +20777,21 @@ var TextTrackMode = exports.TextTrackMode = {
   hidden: 'hidden',
   showing: 'showing'
 };
-},{}],74:[function(_dereq_,module,exports){
+
+},{}],74:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _eventTarget = _dereq_(42);
+var _eventTarget = require('../event-target');
 
 var _eventTarget2 = _interopRequireDefault(_eventTarget);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -20942,24 +21012,25 @@ for (var event in TrackList.prototype.allowedEvents_) {
 }
 
 exports['default'] = TrackList;
-},{"42":42,"78":78,"96":96}],75:[function(_dereq_,module,exports){
+
+},{"../event-target":42,"../utils/browser.js":78,"global/document":96}],75:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _guid = _dereq_(85);
+var _guid = require('../utils/guid.js');
 
 var Guid = _interopRequireWildcard(_guid);
 
-var _eventTarget = _dereq_(42);
+var _eventTarget = require('../event-target');
 
 var _eventTarget2 = _interopRequireDefault(_eventTarget);
 
@@ -21085,20 +21156,21 @@ var Track = function (_EventTarget) {
 }(_eventTarget2['default']);
 
 exports['default'] = Track;
-},{"42":42,"78":78,"85":85,"96":96}],76:[function(_dereq_,module,exports){
+
+},{"../event-target":42,"../utils/browser.js":78,"../utils/guid.js":85,"global/document":96}],76:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackList = _dereq_(74);
+var _trackList = require('./track-list');
 
 var _trackList2 = _interopRequireDefault(_trackList);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -21279,22 +21351,23 @@ var VideoTrackList = function (_TrackList) {
 }(_trackList2['default']);
 
 exports['default'] = VideoTrackList;
-},{"74":74,"78":78,"96":96}],77:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"./track-list":74,"global/document":96}],77:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 
-var _trackEnums = _dereq_(73);
+var _trackEnums = require('./track-enums');
 
-var _track = _dereq_(75);
+var _track = require('./track');
 
 var _track2 = _interopRequireDefault(_track);
 
-var _mergeOptions = _dereq_(87);
+var _mergeOptions = require('../utils/merge-options');
 
 var _mergeOptions2 = _interopRequireDefault(_mergeOptions);
 
-var _browser = _dereq_(78);
+var _browser = require('../utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
@@ -21408,17 +21481,18 @@ var VideoTrack = function (_Track) {
 }(_track2['default']);
 
 exports['default'] = VideoTrack;
-},{"73":73,"75":75,"78":78,"87":87}],78:[function(_dereq_,module,exports){
+
+},{"../utils/browser.js":78,"../utils/merge-options":87,"./track":75,"./track-enums":73}],78:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.BACKGROUND_SIZE_SUPPORTED = exports.TOUCH_ENABLED = exports.IS_ANY_SAFARI = exports.IS_SAFARI = exports.IE_VERSION = exports.IS_IE8 = exports.CHROME_VERSION = exports.IS_CHROME = exports.IS_EDGE = exports.IS_FIREFOX = exports.IS_NATIVE_ANDROID = exports.IS_OLD_ANDROID = exports.ANDROID_VERSION = exports.IS_ANDROID = exports.IOS_VERSION = exports.IS_IOS = exports.IS_IPOD = exports.IS_IPHONE = exports.IS_IPAD = undefined;
 
-var _dom = _dereq_(81);
+var _dom = require('./dom');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
@@ -21514,13 +21588,14 @@ var IS_ANY_SAFARI = exports.IS_ANY_SAFARI = IS_SAFARI || IS_IOS;
 var TOUCH_ENABLED = exports.TOUCH_ENABLED = Dom.isReal() && ('ontouchstart' in _window2['default'] || _window2['default'].DocumentTouch && _window2['default'].document instanceof _window2['default'].DocumentTouch);
 
 var BACKGROUND_SIZE_SUPPORTED = exports.BACKGROUND_SIZE_SUPPORTED = Dom.isReal() && 'backgroundSize' in _window2['default'].document.createElement('video').style;
-},{"81":81,"97":97}],79:[function(_dereq_,module,exports){
+
+},{"./dom":81,"global/window":97}],79:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.bufferedPercent = bufferedPercent;
 
-var _timeRanges = _dereq_(90);
+var _timeRanges = require('./time-ranges.js');
 
 /**
  * Compute the percentage of the media that has been buffered.
@@ -21564,13 +21639,14 @@ function bufferedPercent(buffered, duration) {
    * @file buffer.js
    * @module buffer
    */
-},{"90":90}],80:[function(_dereq_,module,exports){
+
+},{"./time-ranges.js":90}],80:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports['default'] = computedStyle;
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
@@ -21607,7 +21683,8 @@ function computedStyle(el, prop) {
    * @file computed-style.js
    * @module computed-style
    */
-},{"97":97}],81:[function(_dereq_,module,exports){
+
+},{"global/window":97}],81:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -21644,27 +21721,27 @@ exports.normalizeContent = normalizeContent;
 exports.appendContent = appendContent;
 exports.insertContent = insertContent;
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _guid = _dereq_(85);
+var _guid = require('./guid.js');
 
 var Guid = _interopRequireWildcard(_guid);
 
-var _log = _dereq_(86);
+var _log = require('./log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _tsml = _dereq_(102);
+var _tsml = require('tsml');
 
 var _tsml2 = _interopRequireDefault(_tsml);
 
-var _obj = _dereq_(88);
+var _obj = require('./obj');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -22400,7 +22477,6 @@ function calculateTransformScale(el) {
  *        The scale factor of the element and it's parents
  */
 function getTransformScale(el) {
-  // get player element
   if (el.playerEl === undefined) {
     if (el.player_ !== undefined) {
       // el == Player object
@@ -22419,9 +22495,9 @@ function getTransformScale(el) {
       }
     }
   }
-  var scale = void 0;
+  var scale = el.playerEl._cssTransformScale;
 
-  if (el.playerEl && el.playerEl._cssTransformScale === undefined) {
+  if (scale === undefined) {
     scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
 
     var onResize = function onResize() {
@@ -22438,8 +22514,6 @@ function getTransformScale(el) {
     if (el.playerEl.player) {
       el.playerEl.player.on('fullscreenchange', onResize);
     }
-  } else {
-    scale = 1;
   }
   return scale;
 }
@@ -22599,7 +22673,8 @@ var $ = exports.$ = createQuerier('querySelector');
  *
  */
 var $$ = exports.$$ = createQuerier('querySelectorAll');
-},{"102":102,"85":85,"86":86,"88":88,"96":96,"97":97}],82:[function(_dereq_,module,exports){
+
+},{"./guid.js":85,"./log.js":86,"./obj":88,"global/document":96,"global/window":97,"tsml":102}],82:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -22609,23 +22684,23 @@ exports.off = off;
 exports.trigger = trigger;
 exports.one = one;
 
-var _dom = _dereq_(81);
+var _dom = require('./dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _guid = _dereq_(85);
+var _guid = require('./guid.js');
 
 var Guid = _interopRequireWildcard(_guid);
 
-var _log = _dereq_(86);
+var _log = require('./log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -23086,13 +23161,14 @@ function one(elem, type, fn) {
   func.guid = fn.guid = fn.guid || Guid.newGUID();
   on(elem, type, func);
 }
-},{"81":81,"85":85,"86":86,"96":96,"97":97}],83:[function(_dereq_,module,exports){
+
+},{"./dom.js":81,"./guid.js":85,"./log.js":86,"global/document":96,"global/window":97}],83:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.throttle = exports.bind = undefined;
 
-var _guid = _dereq_(85);
+var _guid = require('./guid.js');
 
 /**
  * Bind (a.k.a proxy or Context). A simple method for changing the context of a function
@@ -23162,7 +23238,8 @@ var throttle = exports.throttle = function throttle(fn, wait) {
 
   return throttled;
 };
-},{"85":85}],84:[function(_dereq_,module,exports){
+
+},{"./guid.js":85}],84:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -23215,7 +23292,8 @@ function formatTime(seconds) {
 }
 
 exports['default'] = formatTime;
-},{}],85:[function(_dereq_,module,exports){
+
+},{}],85:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -23240,19 +23318,20 @@ var _guid = 1;
 function newGUID() {
   return _guid++;
 }
-},{}],86:[function(_dereq_,module,exports){
+
+},{}],86:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.logByType = undefined;
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _browser = _dereq_(78);
+var _browser = require('./browser');
 
-var _obj = _dereq_(88);
+var _obj = require('./obj');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -23381,13 +23460,14 @@ log.warn = function () {
 };
 
 exports['default'] = log;
-},{"78":78,"88":88,"97":97}],87:[function(_dereq_,module,exports){
+
+},{"./browser":78,"./obj":88,"global/window":97}],87:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports['default'] = mergeOptions;
 
-var _obj = _dereq_(88);
+var _obj = require('./obj');
 
 /**
  * Deep-merge one or more options objects, recursively merging **only** plain
@@ -23430,7 +23510,8 @@ function mergeOptions() {
    * @file merge-options.js
    * @module merge-options
    */
-},{"88":88}],88:[function(_dereq_,module,exports){
+
+},{"./obj":88}],88:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -23583,13 +23664,14 @@ function isObject(value) {
 function isPlain(value) {
   return isObject(value) && toString.call(value) === '[object Object]' && value.constructor === Object;
 }
-},{}],89:[function(_dereq_,module,exports){
+
+},{}],89:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.setTextContent = exports.createStyleElement = undefined;
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
@@ -23632,14 +23714,15 @@ var setTextContent = exports.setTextContent = function setTextContent(el, conten
     el.textContent = content;
   }
 };
-},{"96":96}],90:[function(_dereq_,module,exports){
+
+},{"global/document":96}],90:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.createTimeRange = undefined;
 exports.createTimeRanges = createTimeRanges;
 
-var _log = _dereq_(86);
+var _log = require('./log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
@@ -23778,7 +23861,8 @@ function createTimeRanges(start, end) {
 }
 
 exports.createTimeRange = createTimeRanges;
-},{"86":86}],91:[function(_dereq_,module,exports){
+
+},{"./log.js":86}],91:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -23805,17 +23889,18 @@ function toTitleCase(string) {
 }
 
 exports['default'] = toTitleCase;
-},{}],92:[function(_dereq_,module,exports){
+
+},{}],92:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
 exports.isCrossOrigin = exports.getFileExtension = exports.getAbsoluteURL = exports.parseUrl = undefined;
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
@@ -23979,7 +24064,8 @@ var isCrossOrigin = exports.isCrossOrigin = function isCrossOrigin(url) {
 
   return crossOrigin;
 };
-},{"96":96,"97":97}],93:[function(_dereq_,module,exports){
+
+},{"global/document":96,"global/window":97}],93:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -23994,99 +24080,99 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 // Include the built-in techs
 
 
-var _window = _dereq_(97);
+var _window = require('global/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _document = _dereq_(96);
+var _document = require('global/document');
 
 var _document2 = _interopRequireDefault(_document);
 
-var _browser = _dereq_(78);
+var _browser = require('./utils/browser.js');
 
 var browser = _interopRequireWildcard(_browser);
 
-var _dom = _dereq_(81);
+var _dom = require('./utils/dom.js');
 
 var Dom = _interopRequireWildcard(_dom);
 
-var _setup = _dereq_(56);
+var _setup = require('./setup');
 
 var setup = _interopRequireWildcard(_setup);
 
-var _stylesheet = _dereq_(89);
+var _stylesheet = require('./utils/stylesheet.js');
 
 var stylesheet = _interopRequireWildcard(_stylesheet);
 
-var _component = _dereq_(5);
+var _component = require('./component');
 
 var _component2 = _interopRequireDefault(_component);
 
-var _eventTarget = _dereq_(42);
+var _eventTarget = require('./event-target');
 
 var _eventTarget2 = _interopRequireDefault(_eventTarget);
 
-var _events = _dereq_(82);
+var _events = require('./utils/events.js');
 
 var Events = _interopRequireWildcard(_events);
 
-var _player = _dereq_(51);
+var _player = require('./player');
 
 var _player2 = _interopRequireDefault(_player);
 
-var _plugins = _dereq_(52);
+var _plugins = require('./plugins.js');
 
 var _plugins2 = _interopRequireDefault(_plugins);
 
-var _mergeOptions2 = _dereq_(87);
+var _mergeOptions2 = require('./utils/merge-options.js');
 
 var _mergeOptions3 = _interopRequireDefault(_mergeOptions2);
 
-var _fn = _dereq_(83);
+var _fn = require('./utils/fn.js');
 
 var Fn = _interopRequireWildcard(_fn);
 
-var _textTrack = _dereq_(72);
+var _textTrack = require('./tracks/text-track.js');
 
 var _textTrack2 = _interopRequireDefault(_textTrack);
 
-var _audioTrack = _dereq_(64);
+var _audioTrack = require('./tracks/audio-track.js');
 
 var _audioTrack2 = _interopRequireDefault(_audioTrack);
 
-var _videoTrack = _dereq_(77);
+var _videoTrack = require('./tracks/video-track.js');
 
 var _videoTrack2 = _interopRequireDefault(_videoTrack);
 
-var _timeRanges = _dereq_(90);
+var _timeRanges = require('./utils/time-ranges.js');
 
-var _formatTime = _dereq_(84);
+var _formatTime = require('./utils/format-time.js');
 
 var _formatTime2 = _interopRequireDefault(_formatTime);
 
-var _log = _dereq_(86);
+var _log = require('./utils/log.js');
 
 var _log2 = _interopRequireDefault(_log);
 
-var _url = _dereq_(92);
+var _url = require('./utils/url.js');
 
 var Url = _interopRequireWildcard(_url);
 
-var _obj = _dereq_(88);
+var _obj = require('./utils/obj');
 
-var _computedStyle = _dereq_(80);
+var _computedStyle = require('./utils/computed-style.js');
 
 var _computedStyle2 = _interopRequireDefault(_computedStyle);
 
-var _extend = _dereq_(43);
+var _extend = require('./extend.js');
 
 var _extend2 = _interopRequireDefault(_extend);
 
-var _xhr = _dereq_(108);
+var _xhr = require('xhr');
 
 var _xhr2 = _interopRequireDefault(_xhr);
 
-var _tech = _dereq_(62);
+var _tech = require('./tech/tech.js');
 
 var _tech2 = _interopRequireDefault(_tech);
 
@@ -24702,10 +24788,10 @@ if (typeof define === 'function' && define.amd) {
 
 exports['default'] = videojs;
 
-},{"108":108,"42":42,"43":43,"5":5,"51":51,"52":52,"56":56,"62":62,"64":64,"72":72,"77":77,"78":78,"80":80,"81":81,"82":82,"83":83,"84":84,"86":86,"87":87,"88":88,"89":89,"90":90,"92":92,"96":96,"97":97}],94:[function(_dereq_,module,exports){
+},{"./component":5,"./event-target":42,"./extend.js":43,"./player":51,"./plugins.js":52,"./setup":56,"./tech/tech.js":62,"./tracks/audio-track.js":64,"./tracks/text-track.js":72,"./tracks/video-track.js":77,"./utils/browser.js":78,"./utils/computed-style.js":80,"./utils/dom.js":81,"./utils/events.js":82,"./utils/fn.js":83,"./utils/format-time.js":84,"./utils/log.js":86,"./utils/merge-options.js":87,"./utils/obj":88,"./utils/stylesheet.js":89,"./utils/time-ranges.js":90,"./utils/url.js":92,"global/document":96,"global/window":97,"xhr":108}],94:[function(require,module,exports){
 
-},{}],95:[function(_dereq_,module,exports){
-var isFunction = _dereq_(98)
+},{}],95:[function(require,module,exports){
+var isFunction = require('is-function')
 
 module.exports = forEach
 
@@ -24752,11 +24838,11 @@ function forEachObject(object, iterator, context) {
     }
 }
 
-},{"98":98}],96:[function(_dereq_,module,exports){
+},{"is-function":98}],96:[function(require,module,exports){
 (function (global){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
-var minDoc = _dereq_(94);
+var minDoc = require('min-document');
 
 if (typeof document !== 'undefined') {
     module.exports = document;
@@ -24771,7 +24857,7 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"94":94}],97:[function(_dereq_,module,exports){
+},{"min-document":94}],97:[function(require,module,exports){
 (function (global){
 if (typeof window !== "undefined") {
     module.exports = window;
@@ -24784,7 +24870,7 @@ if (typeof window !== "undefined") {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],98:[function(_dereq_,module,exports){
+},{}],98:[function(require,module,exports){
 module.exports = isFunction
 
 var toString = Object.prototype.toString
@@ -24801,9 +24887,9 @@ function isFunction (fn) {
       fn === window.prompt))
 };
 
-},{}],99:[function(_dereq_,module,exports){
-var trim = _dereq_(101)
-  , forEach = _dereq_(95)
+},{}],99:[function(require,module,exports){
+var trim = require('trim')
+  , forEach = require('for-each')
   , isArray = function(arg) {
       return Object.prototype.toString.call(arg) === '[object Array]';
     }
@@ -24833,7 +24919,7 @@ module.exports = function (headers) {
 
   return result
 }
-},{"101":101,"95":95}],100:[function(_dereq_,module,exports){
+},{"for-each":95,"trim":101}],100:[function(require,module,exports){
 module.exports = SafeParseTuple
 
 function SafeParseTuple(obj, reviver) {
@@ -24849,7 +24935,7 @@ function SafeParseTuple(obj, reviver) {
     return [error, json]
 }
 
-},{}],101:[function(_dereq_,module,exports){
+},{}],101:[function(require,module,exports){
 
 exports = module.exports = trim;
 
@@ -24865,7 +24951,7 @@ exports.right = function(str){
   return str.replace(/\s*$/, '');
 };
 
-},{}],102:[function(_dereq_,module,exports){
+},{}],102:[function(require,module,exports){
 function clean (s) {
   return s.replace(/\n\r?\s*/g, '')
 }
@@ -24880,7 +24966,7 @@ module.exports = function tsml (sa) {
 
   return s
 }
-},{}],103:[function(_dereq_,module,exports){
+},{}],103:[function(require,module,exports){
 /**
  * Copyright 2013 vtt.js Contributors
  *
@@ -24902,12 +24988,12 @@ module.exports = function tsml (sa) {
 // forth between JSON. If we don't then it's not that big of a deal since we're
 // off browser.
 
-var window = _dereq_(107);
+var window = require('global/window');
 
 var vttjs = module.exports = {
-  WebVTT: _dereq_(104),
-  VTTCue: _dereq_(105),
-  VTTRegion: _dereq_(106)
+  WebVTT: require("./vtt.js"),
+  VTTCue: require("./vttcue.js"),
+  VTTRegion: require("./vttregion.js")
 };
 
 window.vttjs = vttjs;
@@ -24932,7 +25018,7 @@ if (!window.VTTCue) {
   vttjs.shim();
 }
 
-},{"104":104,"105":105,"106":106,"107":107}],104:[function(_dereq_,module,exports){
+},{"./vtt.js":104,"./vttcue.js":105,"./vttregion.js":106,"global/window":107}],104:[function(require,module,exports){
 /**
  * Copyright 2013 vtt.js Contributors
  *
@@ -26263,7 +26349,7 @@ WebVTT.Parser.prototype = {
 
 module.exports = WebVTT;
 
-},{}],105:[function(_dereq_,module,exports){
+},{}],105:[function(require,module,exports){
 /**
  * Copyright 2013 vtt.js Contributors
  *
@@ -26570,7 +26656,7 @@ VTTCue.prototype.getCueAsHTML = function() {
 
 module.exports = VTTCue;
 
-},{}],106:[function(_dereq_,module,exports){
+},{}],106:[function(require,module,exports){
 /**
  * Copyright 2013 vtt.js Contributors
  *
@@ -26706,7 +26792,7 @@ function VTTRegion() {
 
 module.exports = VTTRegion;
 
-},{}],107:[function(_dereq_,module,exports){
+},{}],107:[function(require,module,exports){
 (function (global){
 var win;
 
@@ -26723,12 +26809,12 @@ if (typeof window !== "undefined") {
 module.exports = win;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],108:[function(_dereq_,module,exports){
+},{}],108:[function(require,module,exports){
 "use strict";
-var window = _dereq_(97)
-var isFunction = _dereq_(98)
-var parseHeaders = _dereq_(99)
-var xtend = _dereq_(109)
+var window = require("global/window")
+var isFunction = require("is-function")
+var parseHeaders = require("parse-headers")
+var xtend = require("xtend")
 
 module.exports = createXHR
 createXHR.XMLHttpRequest = window.XMLHttpRequest || noop
@@ -26960,7 +27046,7 @@ function getXml(xhr) {
 
 function noop() {}
 
-},{"109":109,"97":97,"98":98,"99":99}],109:[function(_dereq_,module,exports){
+},{"global/window":97,"is-function":98,"parse-headers":99,"xtend":109}],109:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -26981,5 +27067,14 @@ function extend() {
     return target
 }
 
-},{}]},{},[93])(93)
+},{}],110:[function(require,module,exports){
+/* eslint-disable no-var */
+/* eslint-env qunit */
+var videojs = require('../../');
+
+QUnit.module('Browserify Require');
+QUnit.test('videojs should be requirable and bundled via browserify', function(assert) {
+  assert.ok(videojs, 'videojs is required properly');
 });
+
+},{"../../":93}]},{},[110]);

@@ -756,14 +756,21 @@ export function getTransformScale(el) {
 
   if (scale === undefined) {
     scale = (el.parentElement === undefined) ? 1 : calculateTransformScale(el.playerEl);
-    window.addEventListener('resize', () => {
+
+    const onResize = () => {
+
       if (!isNaN(el.playerEl.timeout)) {
         clearTimeout(el.playerEl.timeout);
       }
 
       // Set a timeout to wait the css scale to be set
       el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
-    });
+    };
+
+    window.addEventListener('resize', onResize);
+    if (el.playerEl.player) {
+      el.playerEl.player.on('fullscreenchange', onResize);
+    }
   }
   return scale;
 }

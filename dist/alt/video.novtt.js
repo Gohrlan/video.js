@@ -1,11 +1,3 @@
-/**
- * @license
- * Video.js 5.20.4 <http://videojs.com/>
- * Copyright Brightcove, Inc. <https://www.brightcove.com/>
- * Available under Apache License Version 2.0
- * <https://github.com/videojs/video.js/blob/master/LICENSE>
- */
-
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.videojs = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 'use strict';
 
@@ -129,7 +121,6 @@ BigPlayButton.prototype.controlText_ = 'Play Video';
 
 _component2['default'].registerComponent('BigPlayButton', BigPlayButton);
 exports['default'] = BigPlayButton;
-
 },{"2":2,"5":5}],2:[function(_dereq_,module,exports){
 'use strict';
 
@@ -307,7 +298,6 @@ var Button = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('Button', Button);
 exports['default'] = Button;
-
 },{"3":3,"5":5,"86":86,"88":88}],3:[function(_dereq_,module,exports){
 'use strict';
 
@@ -630,7 +620,6 @@ var ClickableComponent = function (_Component) {
 
 _component2['default'].registerComponent('ClickableComponent', ClickableComponent);
 exports['default'] = ClickableComponent;
-
 },{"5":5,"81":81,"82":82,"83":83,"86":86,"88":88,"96":96}],4:[function(_dereq_,module,exports){
 'use strict';
 
@@ -729,7 +718,6 @@ var CloseButton = function (_Button) {
 
 _component2['default'].registerComponent('CloseButton', CloseButton);
 exports['default'] = CloseButton;
-
 },{"2":2,"5":5}],5:[function(_dereq_,module,exports){
 'use strict';
 
@@ -2557,7 +2545,6 @@ var Component = function () {
 
 Component.registerComponent('Component', Component);
 exports['default'] = Component;
-
 },{"81":81,"82":82,"83":83,"85":85,"86":86,"87":87,"91":91,"97":97}],6:[function(_dereq_,module,exports){
 'use strict';
 
@@ -2678,7 +2665,6 @@ var AudioTrackButton = function (_TrackButton) {
 AudioTrackButton.prototype.controlText_ = 'Audio Track';
 _component2['default'].registerComponent('AudioTrackButton', AudioTrackButton);
 exports['default'] = AudioTrackButton;
-
 },{"36":36,"5":5,"7":7}],7:[function(_dereq_,module,exports){
 'use strict';
 
@@ -2799,7 +2785,6 @@ var AudioTrackMenuItem = function (_MenuItem) {
 
 _component2['default'].registerComponent('AudioTrackMenuItem', AudioTrackMenuItem);
 exports['default'] = AudioTrackMenuItem;
-
 },{"48":48,"5":5,"83":83}],8:[function(_dereq_,module,exports){
 'use strict';
 
@@ -2906,7 +2891,6 @@ ControlBar.prototype.options_ = {
 
 _component2['default'].registerComponent('ControlBar', ControlBar);
 exports['default'] = ControlBar;
-
 },{"10":10,"11":11,"12":12,"13":13,"18":18,"21":21,"24":24,"25":25,"27":27,"29":29,"32":32,"33":33,"34":34,"35":35,"38":38,"40":40,"5":5,"6":6,"9":9}],9:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3024,7 +3008,6 @@ FullscreenToggle.prototype.controlText_ = 'Fullscreen';
 
 _component2['default'].registerComponent('FullscreenToggle', FullscreenToggle);
 exports['default'] = FullscreenToggle;
-
 },{"2":2,"5":5}],10:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3128,7 +3111,6 @@ var LiveDisplay = function (_Component) {
 
 _component2['default'].registerComponent('LiveDisplay', LiveDisplay);
 exports['default'] = LiveDisplay;
-
 },{"5":5,"81":81}],11:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3284,7 +3266,6 @@ MuteToggle.prototype.controlText_ = 'Mute';
 
 _component2['default'].registerComponent('MuteToggle', MuteToggle);
 exports['default'] = MuteToggle;
-
 },{"2":2,"5":5,"81":81}],12:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3418,7 +3399,6 @@ PlayToggle.prototype.controlText_ = 'Play';
 
 _component2['default'].registerComponent('PlayToggle', PlayToggle);
 exports['default'] = PlayToggle;
-
 },{"2":2,"5":5}],13:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3655,7 +3635,6 @@ PlaybackRateMenuButton.prototype.controlText_ = 'Playback Rate';
 
 _component2['default'].registerComponent('PlaybackRateMenuButton', PlaybackRateMenuButton);
 exports['default'] = PlaybackRateMenuButton;
-
 },{"14":14,"47":47,"49":49,"5":5,"81":81}],14:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3764,7 +3743,6 @@ PlaybackRateMenuItem.prototype.contentElType = 'button';
 
 _component2['default'].registerComponent('PlaybackRateMenuItem', PlaybackRateMenuItem);
 exports['default'] = PlaybackRateMenuItem;
-
 },{"48":48,"5":5}],15:[function(_dereq_,module,exports){
 'use strict';
 
@@ -3888,7 +3866,6 @@ var LoadProgressBar = function (_Component) {
 
 _component2['default'].registerComponent('LoadProgressBar', LoadProgressBar);
 exports['default'] = LoadProgressBar;
-
 },{"5":5,"81":81}],16:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4085,7 +4062,6 @@ var MouseTimeDisplay = function (_Component) {
 
 _component2['default'].registerComponent('MouseTimeDisplay', MouseTimeDisplay);
 exports['default'] = MouseTimeDisplay;
-
 },{"5":5,"80":80,"81":81,"83":83,"84":84}],17:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4188,7 +4164,6 @@ var PlayProgressBar = function (_Component) {
 
 _component2['default'].registerComponent('PlayProgressBar', PlayProgressBar);
 exports['default'] = PlayProgressBar;
-
 },{"5":5,"83":83,"84":84}],18:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4257,7 +4232,6 @@ ProgressControl.prototype.options_ = {
 
 _component2['default'].registerComponent('ProgressControl', ProgressControl);
 exports['default'] = ProgressControl;
-
 },{"16":16,"19":19,"5":5}],19:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4519,7 +4493,6 @@ SeekBar.prototype.playerEvent = 'timeupdate';
 
 _component2['default'].registerComponent('SeekBar', SeekBar);
 exports['default'] = SeekBar;
-
 },{"15":15,"17":17,"20":20,"5":5,"57":57,"80":80,"83":83,"84":84}],20:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4620,7 +4593,6 @@ var TooltipProgressBar = function (_Component) {
 
 _component2['default'].registerComponent('TooltipProgressBar', TooltipProgressBar);
 exports['default'] = TooltipProgressBar;
-
 },{"5":5,"83":83,"84":84}],21:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4693,7 +4665,6 @@ var CustomControlSpacer = function (_Spacer) {
 
 _component2['default'].registerComponent('CustomControlSpacer', CustomControlSpacer);
 exports['default'] = CustomControlSpacer;
-
 },{"22":22,"5":5}],22:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4759,7 +4730,6 @@ var Spacer = function (_Component) {
 _component2['default'].registerComponent('Spacer', Spacer);
 
 exports['default'] = Spacer;
-
 },{"5":5}],23:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4846,7 +4816,6 @@ var CaptionSettingsMenuItem = function (_TextTrackMenuItem) {
 
 _component2['default'].registerComponent('CaptionSettingsMenuItem', CaptionSettingsMenuItem);
 exports['default'] = CaptionSettingsMenuItem;
-
 },{"31":31,"5":5}],24:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4959,7 +4928,6 @@ CaptionsButton.prototype.controlText_ = 'Captions';
 
 _component2['default'].registerComponent('CaptionsButton', CaptionsButton);
 exports['default'] = CaptionsButton;
-
 },{"23":23,"30":30,"5":5}],25:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5201,7 +5169,6 @@ ChaptersButton.prototype.controlText_ = 'Chapters';
 
 _component2['default'].registerComponent('ChaptersButton', ChaptersButton);
 exports['default'] = ChaptersButton;
-
 },{"26":26,"30":30,"5":5,"91":91}],26:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5311,7 +5278,6 @@ var ChaptersTrackMenuItem = function (_MenuItem) {
 
 _component2['default'].registerComponent('ChaptersTrackMenuItem', ChaptersTrackMenuItem);
 exports['default'] = ChaptersTrackMenuItem;
-
 },{"48":48,"5":5,"83":83}],27:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5449,7 +5415,6 @@ DescriptionsButton.prototype.controlText_ = 'Descriptions';
 
 _component2['default'].registerComponent('DescriptionsButton', DescriptionsButton);
 exports['default'] = DescriptionsButton;
-
 },{"30":30,"5":5,"83":83}],28:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5542,7 +5507,6 @@ var OffTextTrackMenuItem = function (_TextTrackMenuItem) {
 
 _component2['default'].registerComponent('OffTextTrackMenuItem', OffTextTrackMenuItem);
 exports['default'] = OffTextTrackMenuItem;
-
 },{"31":31,"5":5}],29:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5631,7 +5595,6 @@ SubtitlesButton.prototype.controlText_ = 'Subtitles';
 
 _component2['default'].registerComponent('SubtitlesButton', SubtitlesButton);
 exports['default'] = SubtitlesButton;
-
 },{"30":30,"5":5}],30:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5736,7 +5699,6 @@ var TextTrackButton = function (_TrackButton) {
 
 _component2['default'].registerComponent('TextTrackButton', TextTrackButton);
 exports['default'] = TextTrackButton;
-
 },{"28":28,"31":31,"36":36,"5":5}],31:[function(_dereq_,module,exports){
 'use strict';
 
@@ -5907,7 +5869,6 @@ var TextTrackMenuItem = function (_MenuItem) {
 
 _component2['default'].registerComponent('TextTrackMenuItem', TextTrackMenuItem);
 exports['default'] = TextTrackMenuItem;
-
 },{"48":48,"5":5,"83":83,"96":96,"97":97}],32:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6017,7 +5978,6 @@ var CurrentTimeDisplay = function (_Component) {
 
 _component2['default'].registerComponent('CurrentTimeDisplay', CurrentTimeDisplay);
 exports['default'] = CurrentTimeDisplay;
-
 },{"5":5,"81":81,"84":84}],33:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6137,7 +6097,6 @@ var DurationDisplay = function (_Component) {
 
 _component2['default'].registerComponent('DurationDisplay', DurationDisplay);
 exports['default'] = DurationDisplay;
-
 },{"5":5,"81":81,"84":84}],34:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6253,7 +6212,6 @@ var RemainingTimeDisplay = function (_Component) {
 
 _component2['default'].registerComponent('RemainingTimeDisplay', RemainingTimeDisplay);
 exports['default'] = RemainingTimeDisplay;
-
 },{"5":5,"81":81,"84":84}],35:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6307,7 +6265,6 @@ var TimeDivider = function (_Component) {
 
 _component2['default'].registerComponent('TimeDivider', TimeDivider);
 exports['default'] = TimeDivider;
-
 },{"5":5}],36:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6387,7 +6344,6 @@ var TrackButton = function (_MenuButton) {
 
 _component2['default'].registerComponent('TrackButton', TrackButton);
 exports['default'] = TrackButton;
-
 },{"47":47,"5":5,"83":83}],37:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6570,7 +6526,6 @@ VolumeBar.prototype.playerEvent = 'volumechange';
 
 _component2['default'].registerComponent('VolumeBar', VolumeBar);
 exports['default'] = VolumeBar;
-
 },{"39":39,"5":5,"57":57,"83":83}],38:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6663,7 +6618,6 @@ VolumeControl.prototype.options_ = {
 
 _component2['default'].registerComponent('VolumeControl', VolumeControl);
 exports['default'] = VolumeControl;
-
 },{"37":37,"5":5}],39:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6716,7 +6670,6 @@ var VolumeLevel = function (_Component) {
 
 _component2['default'].registerComponent('VolumeLevel', VolumeLevel);
 exports['default'] = VolumeLevel;
-
 },{"5":5}],40:[function(_dereq_,module,exports){
 'use strict';
 
@@ -6961,7 +6914,6 @@ VolumeMenuButton.prototype.controlText_ = 'Mute';
 
 _component2['default'].registerComponent('VolumeMenuButton', VolumeMenuButton);
 exports['default'] = VolumeMenuButton;
-
 },{"11":11,"37":37,"5":5,"53":53,"54":54,"83":83}],41:[function(_dereq_,module,exports){
 'use strict';
 
@@ -7064,7 +7016,6 @@ ErrorDisplay.prototype.options_ = (0, _mergeOptions2['default'])(_modalDialog2['
 
 _component2['default'].registerComponent('ErrorDisplay', ErrorDisplay);
 exports['default'] = ErrorDisplay;
-
 },{"5":5,"50":50,"87":87}],42:[function(_dereq_,module,exports){
 'use strict';
 
@@ -7235,7 +7186,6 @@ EventTarget.prototype.trigger = function (event) {
 EventTarget.prototype.dispatchEvent = EventTarget.prototype.trigger;
 
 exports['default'] = EventTarget;
-
 },{"82":82}],43:[function(_dereq_,module,exports){
 'use strict';
 
@@ -7337,7 +7287,6 @@ var extendFn = function extendFn(superClass) {
 };
 
 exports['default'] = extendFn;
-
 },{"86":86,"88":88}],44:[function(_dereq_,module,exports){
 'use strict';
 
@@ -7394,7 +7343,6 @@ if (browserApi) {
 }
 
 exports['default'] = FullscreenApi;
-
 },{"96":96}],45:[function(_dereq_,module,exports){
 'use strict';
 
@@ -7447,7 +7395,6 @@ var LoadingSpinner = function (_Component) {
 
 _component2['default'].registerComponent('LoadingSpinner', LoadingSpinner);
 exports['default'] = LoadingSpinner;
-
 },{"5":5}],46:[function(_dereq_,module,exports){
 'use strict';
 
@@ -7660,7 +7607,6 @@ for (var errNum = 0; errNum < MediaError.errorTypes.length; errNum++) {
  */
 
 exports['default'] = MediaError;
-
 },{"88":88}],47:[function(_dereq_,module,exports){
 'use strict';
 
@@ -8014,7 +7960,6 @@ var MenuButton = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('MenuButton', MenuButton);
 exports['default'] = MenuButton;
-
 },{"3":3,"49":49,"5":5,"81":81,"83":83,"91":91}],48:[function(_dereq_,module,exports){
 'use strict';
 
@@ -8154,7 +8099,6 @@ var MenuItem = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('MenuItem', MenuItem);
 exports['default'] = MenuItem;
-
 },{"3":3,"5":5,"88":88}],49:[function(_dereq_,module,exports){
 'use strict';
 
@@ -8358,7 +8302,6 @@ var Menu = function (_Component) {
 
 _component2['default'].registerComponent('Menu', Menu);
 exports['default'] = Menu;
-
 },{"5":5,"81":81,"82":82,"83":83}],50:[function(_dereq_,module,exports){
 'use strict';
 
@@ -8853,7 +8796,6 @@ ModalDialog.prototype.options_ = {
 
 _component2['default'].registerComponent('ModalDialog', ModalDialog);
 exports['default'] = ModalDialog;
-
 },{"5":5,"81":81,"83":83}],51:[function(_dereq_,module,exports){
 'use strict';
 
@@ -12540,7 +12482,6 @@ TECH_EVENTS_RETRIGGER.forEach(function (event) {
 
 _component2['default'].registerComponent('Player', Player);
 exports['default'] = Player;
-
 },{"1":1,"100":100,"4":4,"41":41,"44":44,"45":45,"46":46,"5":5,"50":50,"55":55,"59":59,"60":60,"61":61,"62":62,"63":63,"68":68,"69":69,"71":71,"76":76,"78":78,"79":79,"8":8,"81":81,"82":82,"83":83,"85":85,"86":86,"87":87,"88":88,"89":89,"90":90,"91":91,"96":96,"97":97}],52:[function(_dereq_,module,exports){
 'use strict';
 
@@ -12568,7 +12509,6 @@ var plugin = function plugin(name, init) {
     * @module plugins
     */
 exports['default'] = plugin;
-
 },{"51":51}],53:[function(_dereq_,module,exports){
 'use strict';
 
@@ -12692,7 +12632,6 @@ var PopupButton = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('PopupButton', PopupButton);
 exports['default'] = PopupButton;
-
 },{"3":3,"5":5}],54:[function(_dereq_,module,exports){
 'use strict';
 
@@ -12792,7 +12731,6 @@ var Popup = function (_Component) {
 
 _component2['default'].registerComponent('Popup', Popup);
 exports['default'] = Popup;
-
 },{"5":5,"81":81,"82":82,"83":83}],55:[function(_dereq_,module,exports){
 'use strict';
 
@@ -12975,7 +12913,6 @@ var PosterImage = function (_ClickableComponent) {
 
 _component2['default'].registerComponent('PosterImage', PosterImage);
 exports['default'] = PosterImage;
-
 },{"3":3,"5":5,"78":78,"81":81,"83":83}],56:[function(_dereq_,module,exports){
 'use strict';
 
@@ -13121,7 +13058,6 @@ var hasLoaded = function hasLoaded() {
 exports.autoSetup = autoSetup;
 exports.autoSetupTimeout = autoSetupTimeout;
 exports.hasLoaded = hasLoaded;
-
 },{"81":81,"82":82,"96":96,"97":97}],57:[function(_dereq_,module,exports){
 'use strict';
 
@@ -13476,7 +13412,6 @@ var Slider = function (_Component) {
 
 _component2['default'].registerComponent('Slider', Slider);
 exports['default'] = Slider;
-
 },{"5":5,"81":81,"88":88}],58:[function(_dereq_,module,exports){
 'use strict';
 
@@ -13680,7 +13615,6 @@ function FlashRtmpDecorator(Flash) {
 }
 
 exports['default'] = FlashRtmpDecorator;
-
 },{}],59:[function(_dereq_,module,exports){
 'use strict';
 
@@ -14862,7 +14796,6 @@ Flash.getEmbedCode = function (swf, flashVars, params, attributes) {
 _component2['default'].registerComponent('Flash', Flash);
 _tech2['default'].registerTech('Flash', Flash);
 exports['default'] = Flash;
-
 },{"5":5,"58":58,"62":62,"81":81,"88":88,"90":90,"92":92,"97":97}],60:[function(_dereq_,module,exports){
 'use strict';
 
@@ -16805,7 +16738,6 @@ Html5.registerSourceHandler(Html5.nativeSourceHandler);
 _component2['default'].registerComponent('Html5', Html5);
 _tech2['default'].registerTech('Html5', Html5);
 exports['default'] = Html5;
-
 },{"102":102,"5":5,"62":62,"78":78,"81":81,"83":83,"86":86,"87":87,"88":88,"91":91,"92":92,"96":96,"97":97}],61:[function(_dereq_,module,exports){
 'use strict';
 
@@ -16895,7 +16827,6 @@ var MediaLoader = function (_Component) {
 
 _component2['default'].registerComponent('MediaLoader', MediaLoader);
 exports['default'] = MediaLoader;
-
 },{"5":5,"62":62,"91":91}],62:[function(_dereq_,module,exports){
 'use strict';
 
@@ -18312,7 +18243,6 @@ _component2['default'].registerComponent('Tech', Tech);
 _component2['default'].registerComponent('MediaTechController', Tech);
 Tech.registerTech('Tech', Tech);
 exports['default'] = Tech;
-
 },{"46":46,"5":5,"63":63,"65":65,"66":66,"70":70,"72":72,"76":76,"79":79,"83":83,"86":86,"87":87,"88":88,"90":90,"96":96,"97":97}],63:[function(_dereq_,module,exports){
 'use strict';
 
@@ -18495,7 +18425,6 @@ var AudioTrackList = function (_TrackList) {
 }(_trackList2['default']);
 
 exports['default'] = AudioTrackList;
-
 },{"74":74,"78":78,"96":96}],64:[function(_dereq_,module,exports){
 'use strict';
 
@@ -18626,7 +18555,6 @@ var AudioTrack = function (_Track) {
 }(_track2['default']);
 
 exports['default'] = AudioTrack;
-
 },{"73":73,"75":75,"78":78,"87":87}],65:[function(_dereq_,module,exports){
 'use strict';
 
@@ -18776,7 +18704,6 @@ var HtmlTrackElementList = function () {
 }();
 
 exports['default'] = HtmlTrackElementList;
-
 },{"78":78,"96":96}],66:[function(_dereq_,module,exports){
 'use strict';
 
@@ -18947,7 +18874,6 @@ HTMLTrackElement.LOADED = LOADED;
 HTMLTrackElement.ERROR = ERROR;
 
 exports['default'] = HTMLTrackElement;
-
 },{"42":42,"72":72,"78":78,"96":96}],67:[function(_dereq_,module,exports){
 'use strict';
 
@@ -19101,7 +19027,6 @@ var TextTrackCueList = function () {
 }();
 
 exports['default'] = TextTrackCueList;
-
 },{"78":78,"96":96}],68:[function(_dereq_,module,exports){
 'use strict';
 
@@ -19453,7 +19378,6 @@ var TextTrackDisplay = function (_Component) {
 
 _component2['default'].registerComponent('TextTrackDisplay', TextTrackDisplay);
 exports['default'] = TextTrackDisplay;
-
 },{"5":5,"83":83,"97":97}],69:[function(_dereq_,module,exports){
 'use strict';
 
@@ -19557,7 +19481,6 @@ var jsonToTextTracks = function jsonToTextTracks(json, tech) {
 };
 
 exports['default'] = { textTracksToJson: textTracksToJson, jsonToTextTracks: jsonToTextTracks, trackToJson_: trackToJson_ };
-
 },{}],70:[function(_dereq_,module,exports){
 'use strict';
 
@@ -19663,7 +19586,6 @@ var TextTrackList = function (_TrackList) {
 }(_trackList2['default']);
 
 exports['default'] = TextTrackList;
-
 },{"74":74,"78":78,"83":83,"96":96}],71:[function(_dereq_,module,exports){
 'use strict';
 
@@ -20266,7 +20188,6 @@ var TextTrackSettings = function (_Component) {
 _component2['default'].registerComponent('TextTrackSettings', TextTrackSettings);
 
 exports['default'] = TextTrackSettings;
-
 },{"5":5,"81":81,"83":83,"86":86,"88":88,"97":97}],72:[function(_dereq_,module,exports){
 'use strict';
 
@@ -20717,7 +20638,6 @@ TextTrack.prototype.allowedEvents_ = {
 };
 
 exports['default'] = TextTrack;
-
 },{"103":103,"67":67,"73":73,"75":75,"78":78,"83":83,"86":86,"87":87,"92":92,"97":97}],73:[function(_dereq_,module,exports){
 'use strict';
 
@@ -20785,7 +20705,6 @@ var TextTrackMode = exports.TextTrackMode = {
   hidden: 'hidden',
   showing: 'showing'
 };
-
 },{}],74:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21020,7 +20939,6 @@ for (var event in TrackList.prototype.allowedEvents_) {
 }
 
 exports['default'] = TrackList;
-
 },{"42":42,"78":78,"96":96}],75:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21164,7 +21082,6 @@ var Track = function (_EventTarget) {
 }(_eventTarget2['default']);
 
 exports['default'] = Track;
-
 },{"42":42,"78":78,"85":85,"96":96}],76:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21359,7 +21276,6 @@ var VideoTrackList = function (_TrackList) {
 }(_trackList2['default']);
 
 exports['default'] = VideoTrackList;
-
 },{"74":74,"78":78,"96":96}],77:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21489,7 +21405,6 @@ var VideoTrack = function (_Track) {
 }(_track2['default']);
 
 exports['default'] = VideoTrack;
-
 },{"73":73,"75":75,"78":78,"87":87}],78:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21596,7 +21511,6 @@ var IS_ANY_SAFARI = exports.IS_ANY_SAFARI = IS_SAFARI || IS_IOS;
 var TOUCH_ENABLED = exports.TOUCH_ENABLED = Dom.isReal() && ('ontouchstart' in _window2['default'] || _window2['default'].DocumentTouch && _window2['default'].document instanceof _window2['default'].DocumentTouch);
 
 var BACKGROUND_SIZE_SUPPORTED = exports.BACKGROUND_SIZE_SUPPORTED = Dom.isReal() && 'backgroundSize' in _window2['default'].document.createElement('video').style;
-
 },{"81":81,"97":97}],79:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21647,7 +21561,6 @@ function bufferedPercent(buffered, duration) {
    * @file buffer.js
    * @module buffer
    */
-
 },{"90":90}],80:[function(_dereq_,module,exports){
 'use strict';
 
@@ -21691,7 +21604,6 @@ function computedStyle(el, prop) {
    * @file computed-style.js
    * @module computed-style
    */
-
 },{"97":97}],81:[function(_dereq_,module,exports){
 'use strict';
 
@@ -22507,14 +22419,21 @@ function getTransformScale(el) {
 
   if (scale === undefined) {
     scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
-    _window2['default'].addEventListener('resize', function () {
+
+    var onResize = function onResize() {
+
       if (!isNaN(el.playerEl.timeout)) {
         clearTimeout(el.playerEl.timeout);
       }
 
       // Set a timeout to wait the css scale to be set
       el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
-    });
+    };
+
+    _window2['default'].addEventListener('resize', onResize);
+    if (el.playerEl.player) {
+      el.playerEl.player.on('fullscreenchange', onResize);
+    }
   }
   return scale;
 }
@@ -22674,7 +22593,6 @@ var $ = exports.$ = createQuerier('querySelector');
  *
  */
 var $$ = exports.$$ = createQuerier('querySelectorAll');
-
 },{"102":102,"85":85,"86":86,"88":88,"96":96,"97":97}],82:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23162,7 +23080,6 @@ function one(elem, type, fn) {
   func.guid = fn.guid = fn.guid || Guid.newGUID();
   on(elem, type, func);
 }
-
 },{"81":81,"85":85,"86":86,"96":96,"97":97}],83:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23239,7 +23156,6 @@ var throttle = exports.throttle = function throttle(fn, wait) {
 
   return throttled;
 };
-
 },{"85":85}],84:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23293,7 +23209,6 @@ function formatTime(seconds) {
 }
 
 exports['default'] = formatTime;
-
 },{}],85:[function(_dereq_,module,exports){
 "use strict";
 
@@ -23319,7 +23234,6 @@ var _guid = 1;
 function newGUID() {
   return _guid++;
 }
-
 },{}],86:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23461,7 +23375,6 @@ log.warn = function () {
 };
 
 exports['default'] = log;
-
 },{"78":78,"88":88,"97":97}],87:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23511,7 +23424,6 @@ function mergeOptions() {
    * @file merge-options.js
    * @module merge-options
    */
-
 },{"88":88}],88:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23665,7 +23577,6 @@ function isObject(value) {
 function isPlain(value) {
   return isObject(value) && toString.call(value) === '[object Object]' && value.constructor === Object;
 }
-
 },{}],89:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23715,7 +23626,6 @@ var setTextContent = exports.setTextContent = function setTextContent(el, conten
     el.textContent = content;
   }
 };
-
 },{"96":96}],90:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23862,7 +23772,6 @@ function createTimeRanges(start, end) {
 }
 
 exports.createTimeRange = createTimeRanges;
-
 },{"86":86}],91:[function(_dereq_,module,exports){
 'use strict';
 
@@ -23890,7 +23799,6 @@ function toTitleCase(string) {
 }
 
 exports['default'] = toTitleCase;
-
 },{}],92:[function(_dereq_,module,exports){
 'use strict';
 
@@ -24065,7 +23973,6 @@ var isCrossOrigin = exports.isCrossOrigin = function isCrossOrigin(url) {
 
   return crossOrigin;
 };
-
 },{"96":96,"97":97}],93:[function(_dereq_,module,exports){
 'use strict';
 
@@ -24788,7 +24695,6 @@ if (typeof define === 'function' && define.amd) {
 }
 
 exports['default'] = videojs;
-
 },{"103":103,"42":42,"43":43,"5":5,"51":51,"52":52,"56":56,"62":62,"64":64,"72":72,"77":77,"78":78,"80":80,"81":81,"82":82,"83":83,"84":84,"86":86,"87":87,"88":88,"89":89,"90":90,"92":92,"96":96,"97":97}],94:[function(_dereq_,module,exports){
 
 },{}],95:[function(_dereq_,module,exports){

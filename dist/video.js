@@ -718,7 +718,6 @@ var CloseButton = function (_Button) {
 
 _component2['default'].registerComponent('CloseButton', CloseButton);
 exports['default'] = CloseButton;
-
 },{"2":2,"5":5}],5:[function(_dereq_,module,exports){
 'use strict';
 
@@ -4929,7 +4928,6 @@ CaptionsButton.prototype.controlText_ = 'Captions';
 
 _component2['default'].registerComponent('CaptionsButton', CaptionsButton);
 exports['default'] = CaptionsButton;
-
 },{"23":23,"30":30,"5":5}],25:[function(_dereq_,module,exports){
 'use strict';
 
@@ -20640,7 +20638,6 @@ TextTrack.prototype.allowedEvents_ = {
 };
 
 exports['default'] = TextTrack;
-
 },{"108":108,"67":67,"73":73,"75":75,"78":78,"83":83,"86":86,"87":87,"92":92,"97":97}],73:[function(_dereq_,module,exports){
 'use strict';
 
@@ -22419,27 +22416,29 @@ function getTransformScale(el) {
       }
     }
   }
-  var scale = void 0;
+  var scale = 1;
 
-  if (el.playerEl && el.playerEl._cssTransformScale === undefined) {
-    scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
+  if (el.playerEl) {
+    if (el.playerEl._cssTransformScale === undefined) {
+      scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
 
-    var onResize = function onResize() {
+      var onResize = function onResize() {
 
-      if (!isNaN(el.playerEl.timeout)) {
-        clearTimeout(el.playerEl.timeout);
+        if (!isNaN(el.playerEl.timeout)) {
+          clearTimeout(el.playerEl.timeout);
+        }
+
+        // Set a timeout to wait the css scale to be set
+        el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
+      };
+
+      _window2['default'].addEventListener('resize', onResize);
+      if (el.playerEl.player) {
+        el.playerEl.player.on('fullscreenchange', onResize);
       }
-
-      // Set a timeout to wait the css scale to be set
-      el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
-    };
-
-    _window2['default'].addEventListener('resize', onResize);
-    if (el.playerEl.player) {
-      el.playerEl.player.on('fullscreenchange', onResize);
+    } else {
+      scale = el.playerEl._cssTransformScale;
     }
-  } else {
-    scale = 1;
   }
   return scale;
 }
@@ -24701,7 +24700,6 @@ if (typeof define === 'function' && define.amd) {
 }
 
 exports['default'] = videojs;
-
 },{"108":108,"42":42,"43":43,"5":5,"51":51,"52":52,"56":56,"62":62,"64":64,"72":72,"77":77,"78":78,"80":80,"81":81,"82":82,"83":83,"84":84,"86":86,"87":87,"88":88,"89":89,"90":90,"92":92,"96":96,"97":97}],94:[function(_dereq_,module,exports){
 
 },{}],95:[function(_dereq_,module,exports){

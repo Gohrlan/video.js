@@ -1732,6 +1732,7 @@
 	 *        The scale factor of the element and it's parents
 	 */
 	function getTransformScale(el) {
+	  // get player element
 	  if (el.playerEl === undefined) {
 	    if (el.player_ !== undefined) {
 	      // el == Player object
@@ -1750,9 +1751,9 @@
 	      }
 	    }
 	  }
-	  var scale = el.playerEl._cssTransformScale;
+	  var scale = void 0;
 
-	  if (scale === undefined) {
+	  if (el.playerEl && el.playerEl._cssTransformScale === undefined) {
 	    scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
 
 	    var onResize = function onResize() {
@@ -1769,6 +1770,8 @@
 	    if (el.playerEl.player) {
 	      el.playerEl.player.on('fullscreenchange', onResize);
 	    }
+	  } else {
+	    scale = 1;
 	  }
 	  return scale;
 	}

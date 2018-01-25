@@ -22417,27 +22417,29 @@ function getTransformScale(el) {
       }
     }
   }
-  var scale = void 0;
+  var scale = 1;
 
-  if (el.playerEl && el.playerEl._cssTransformScale === undefined) {
-    scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
+  if (el.playerEl) {
+    if (el.playerEl._cssTransformScale === undefined) {
+      scale = el.parentElement === undefined ? 1 : calculateTransformScale(el.playerEl);
 
-    var onResize = function onResize() {
+      var onResize = function onResize() {
 
-      if (!isNaN(el.playerEl.timeout)) {
-        clearTimeout(el.playerEl.timeout);
+        if (!isNaN(el.playerEl.timeout)) {
+          clearTimeout(el.playerEl.timeout);
+        }
+
+        // Set a timeout to wait the css scale to be set
+        el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
+      };
+
+      _window2['default'].addEventListener('resize', onResize);
+      if (el.playerEl.player) {
+        el.playerEl.player.on('fullscreenchange', onResize);
       }
-
-      // Set a timeout to wait the css scale to be set
-      el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
-    };
-
-    _window2['default'].addEventListener('resize', onResize);
-    if (el.playerEl.player) {
-      el.playerEl.player.on('fullscreenchange', onResize);
+    } else {
+      scale = el.playerEl._cssTransformScale;
     }
-  } else {
-    scale = 1;
   }
   return scale;
 }

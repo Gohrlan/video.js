@@ -9,8 +9,6 @@ import log from './log.js';
 import tsml from 'tsml';
 import {isObject} from './obj';
 
-let _cssTransformScale;
-
 /**
  * Detect if a value is a string with any non-whitespace characters.
  *
@@ -695,7 +693,14 @@ export function getPointerPosition(el, event) {
 function calculateTransformScale(el) {
   let scale = 1;
 
-  while (el && el.nodeName !== 'html') {
+  if (el.el_ !== undefined) {
+    // When browser goes fullscreen player is given as el param
+    el = el.el_;
+  }
+  const player = el;
+
+  while (el && el.nodeName !== 'html' && el.nodeName !== 'undefined' && !el.classList.contains('vjs-fullscreen')) {
+    // When video fs, dont't scale from parents
     const st = window.getComputedStyle(el, null);
     const tr = st.getPropertyValue('-webkit-transform') ||
       st.getPropertyValue('-moz-transform') ||
@@ -715,7 +720,7 @@ function calculateTransformScale(el) {
     el = el.parentElement;
   }
 
-  _cssTransformScale = scale;
+  player._cssTransformScale = scale;
   return scale;
 }
 
@@ -729,17 +734,35 @@ function calculateTransformScale(el) {
  *        The scale factor of the element and it's parents
  */
 export function getTransformScale(el) {
-  let scale = _cssTransformScale;
+  if (el.playerEl === undefined) {
+    if (el.player_ !== undefined) {
+      // el == Player object
+      el.playerEl = el.player_.el_;
+    } else {
+      // other el
+      let elTmp = el;
 
-  if (_cssTransformScale === undefined) {
-    scale = (el.parentElement === undefined) ? 1 : calculateTransformScale(el);
+      while (elTmp && elTmp !== window && elTmp.nodeName !== 'html' && elTmp.parentElement !== undefined) {
+        if (elTmp.player !== undefined) {
+          el.playerEl = elTmp.player.el_;
+          break;
+        } else {
+          elTmp = elTmp.parentElement;
+        }
+      }
+    }
+  }
+  let scale = el.playerEl._cssTransformScale;
+
+  if (scale === undefined) {
+    scale = (el.parentElement === undefined) ? 1 : calculateTransformScale(el.playerEl);
     window.addEventListener('resize', () => {
-      if (!isNaN(this.timeout)) {
-        clearTimeout(this.timeout);
+      if (!isNaN(el.playerEl.timeout)) {
+        clearTimeout(el.playerEl.timeout);
       }
 
       // Set a timeout to wait the css scale to be set
-      this.timeout = setTimeout(calculateTransformScale, 100, el);
+      el.playerEl.timeout = setTimeout(calculateTransformScale, 100, el.playerEl);
     });
   }
   return scale;
